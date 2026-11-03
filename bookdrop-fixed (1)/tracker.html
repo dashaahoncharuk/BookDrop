@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="uk" class="dark scroll-smooth" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Твій вішлист і прогрес читання BookDrop в одному місці.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="uk_UA">
+  <meta property="og:site_name" content="BookDrop.">
+  <meta property="og:title" content="Мій простір — BookDrop.">
+  <meta property="og:description" content="Твій вішлист і прогрес читання BookDrop в одному місці.">
+  <title>Мій простір — BookDrop.</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { brand: { bg: '#121212', surface: '#18181B', raised: '#27272A', border: '#3F3F46', primary: '#4F46E5', violet: '#6366F1', mint: '#10B981' } },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], display: ['Raleway', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <!-- Тема до завантаження DOM, щоб уникнути мерехтіння -->
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem('bookdrop-theme') || localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/tracker.css">
+  <script src="js/books.js" defer></script>
+  <script src="js/store.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/tracker.js" defer></script>
+</head>
+<body class="bg-zinc-50 text-zinc-900 dark:bg-[#121212] dark:text-[#F9FAFB] font-sans antialiased transition-colors duration-300 selection:bg-indigo-600 selection:text-white">
+
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-300">
+    Перейти до основного вмісту
+  </a>
+
+  <header class="site-header sticky top-0 z-50 w-full backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-[72px] flex items-center justify-between">
+      
+      <!-- Логотип BookDrop. -->
+      <a href="index.html" class="logo flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded-md py-1 min-h-[44px]" aria-label="BookDrop. — на головну сторінку">
+        <svg class="logo-b-icon w-7 h-6" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M2 5h16c1.1 0 2 .9 2 2s-.9 2-2 2H2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M5 7h10" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M2 11h18c1.1 0 2 .9 2 2s-.9 2-2 2H2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M5 13h12" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M2 17h16c1.1 0 2 .9 2 2s-.9 2-2 2H2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M5 19h10" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-text text-xl font-bold tracking-tight font-display">ookDrop<span class="logo-dot text-indigo-500">.</span></span>
+      </a>
+
+      <!-- Горизонтальна десктопна навігація -->
+      <nav class="hidden md:flex items-center" aria-label="Головна навігація">
+        <ul class="flex items-center gap-6 lg:gap-8 text-sm font-medium">
+          <li>
+            <a href="index.html" class="nav-link py-2 inline-flex items-center min-h-[44px]">Головна</a>
+          </li>
+          <li>
+            <a href="index.html#matcher" class="nav-link py-2 inline-flex items-center min-h-[44px]">Вайб-пошук</a>
+          </li>
+          <li>
+            <a href="index.html#media-hub" class="nav-link py-2 inline-flex items-center min-h-[44px]">Медіа-хаб</a>
+          </li>
+          <li>
+            <a href="about.html" class="nav-link py-2 inline-flex items-center min-h-[44px]">Про нас</a>
+          </li>
+          <li>
+            <a href="tracker.html" class="nav-link active py-2 border-b-2 border-indigo-500 inline-flex items-center min-h-[44px]" aria-current="page">Мій простір</a>
+          </li>
+          <li>
+            <a href="community.html" class="nav-link py-2 inline-flex items-center min-h-[44px]">Спільнота</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Панель дій користувача -->
+      <div class="header-actions flex items-center gap-2 sm:gap-3">
+        <!-- Кнопка швидкого перемикання теми (світла / темна) -->
+        <button type="button" class="btn-theme flex items-center justify-center w-11 h-11 md:w-10 md:h-10 rounded-lg hover:border-indigo-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Перемкнути тему сайту">
+          <i class="fa-solid fa-circle-half-stroke text-base" aria-hidden="true"></i>
+        </button>
+
+        <!-- Віджет вішлиста зі збереженими книгами (значення оновлює js/app.js) -->
+        <a href="tracker.html#wishlist" class="wishlist-badge inline-flex items-center gap-2 h-11 md:h-10 px-3.5 rounded-lg hover:border-indigo-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Перейти у вішлист">
+          <i class="fa-regular fa-heart text-indigo-500" aria-hidden="true"></i>
+          <span class="wishlist-count text-xs font-semibold px-1.5 py-0.5 rounded-full bg-indigo-600 text-white" aria-live="polite">0</span>
+        </a>
+
+        <!-- CTA-кнопка переходу до квізу -->
+        <a href="index.html#matcher" class="btn btn-primary hidden sm:inline-flex items-center justify-center min-h-[44px] md:min-h-[40px] px-4 rounded-lg text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          Підібрати книгу
+        </a>
+
+        <!-- Кнопка мобільного гамбургер-меню -->
+        <button type="button" id="mobile-menu-btn" class="btn-theme md:hidden flex items-center justify-center w-11 h-11 rounded-lg hover:border-indigo-400 transition-colors" aria-label="Відкрити головне меню" aria-expanded="false" aria-controls="mobile-menu">
+          <i class="fa-solid fa-bars text-lg" id="mobile-menu-icon" aria-hidden="true"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Мобільне випадаюче меню -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-zinc-200 dark:border-[#3F3F46] bg-white dark:bg-[#18181B] px-4 pt-3 pb-6 transition-all duration-200">
+      <ul class="flex flex-col space-y-2 text-base font-medium">
+        <li><a href="index.html" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Головна</a></li>
+        <li><a href="index.html#matcher" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Вайб-пошук</a></li>
+        <li><a href="index.html#media-hub" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Медіа-хаб</a></li>
+        <li><a href="about.html" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Про нас</a></li>
+        <li><a href="tracker.html" class="flex items-center min-h-[44px] py-2 text-indigo-600 dark:text-indigo-400 border-b border-zinc-200 dark:border-[#27272A]" aria-current="page">Мій простір</a></li>
+        <li><a href="community.html" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Спільнота</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main-content" class="page-main tracker-main" tabindex="-1">
+    <header class="tracker-intro">
+      <h1 class="tracker-title">Мій простір</h1>
+      <p class="tracker-lede">Зберігай книги й позначай сторінку, на якій зупинився.</p>
+      <nav class="tracker-shortcuts" aria-label="Розділи мого простору">
+        <a href="#reading-journal">Щоденник читання</a>
+        <a href="#wishlist">Вішлист</a>
+        <a href="#suggestions">Що додати</a>
+        <a href="index.html#books">Підбір під настрій</a>
+      </nav>
+      <ul class="tracker-stats" data-stats aria-label="Моя статистика читання"></ul>
+    </header>
+
+    <section class="tracker-section journal-section" id="reading-journal" aria-labelledby="journal-title">
+      <header class="tracker-section-header">
+        <div>
+          <h2 id="journal-title" class="tracker-section-title">Щоденник читання</h2>
+          <p class="tracker-instructions">Вкажи сторінку, на якій зупинився. Це число замінить попереднє.</p>
+        </div>
+      </header>
+      <p class="tracker-storage-note" data-storage-note>Прогрес і вішлист зберігаються в цьому браузері.</p>
+      <ul class="journal-list" data-journal-list aria-label="Прогрес читання збережених книг"></ul>
+    </section>
+
+    <section class="tracker-empty" data-empty-state aria-labelledby="empty-title" hidden>
+      <h2 id="empty-title">У вішлисті ще немає книг</h2>
+      <p>Додай книгу з добірки нижче або підбери її під настрій — і тут з’явиться щоденник читання.</p>
+      <a href="index.html#matcher" class="btn btn-primary empty-state-link">Підібрати книгу під настрій</a>
+    </section>
+
+    <section class="tracker-section wishlist-section" id="wishlist" aria-labelledby="wishlist-title">
+      <header class="tracker-section-header wishlist-section-header">
+        <h2 id="wishlist-title" class="tracker-section-title" tabindex="-1">Вішлист</h2>
+        <p class="wishlist-total" data-wishlist-total aria-live="polite">0 книг</p>
+      </header>
+      <ul class="books-grid tracker-wishlist-grid" data-wishlist-list aria-label="Книги у вішлисті"></ul>
+    </section>
+
+    <section class="tracker-section suggestions-section" id="suggestions" aria-labelledby="suggestions-title">
+      <header class="tracker-section-header wishlist-section-header">
+        <div>
+          <h2 id="suggestions-title" class="tracker-section-title">Що додати до вішлиста</h2>
+          <p class="tracker-instructions">Добірка з різних жанрів. Натисни серце, щоб зберегти книгу.</p>
+        </div>
+        <button type="button" class="suggestions-refresh" data-suggestions-refresh>
+          <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> Інші книги
+        </button>
+      </header>
+      <ul class="books-grid tracker-wishlist-grid" data-suggestions-list aria-label="Рекомендовані книги"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer bg-zinc-100 dark:bg-[#18181B] border-t border-zinc-200 dark:border-[#3F3F46] py-12 text-sm text-zinc-600 dark:text-zinc-400 transition-colors duration-300">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 footer-container flex flex-col md:flex-row justify-between gap-8">
+      <div class="footer-brand max-w-xs space-y-2">
+        <a href="index.html" class="logo flex items-center gap-1.5 text-zinc-900 dark:text-white font-bold text-xl">
+          <span class="font-display">BookDrop<span class="text-indigo-600 dark:text-indigo-500">.</span></span>
+        </a>
+        <p class="footer-tagline text-xs text-zinc-600 dark:text-zinc-400">Хороші історії знаходять тебе. У правильний момент.</p>
+        <small class="copyright text-zinc-500 text-xs">© 2026 BookDrop.</small>
+      </div>
+
+      <nav class="footer-nav" aria-label="Навігація у підвалі">
+        <ul class="flex flex-col space-y-2.5 text-sm font-medium">
+          <li>
+            <a href="index.html" class="group inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:translate-x-1.5 py-1" aria-current="page">
+              <span class="group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Головна</span>
+              <i class="fa-solid fa-arrow-right text-[11px] text-indigo-600 dark:text-indigo-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="about.html" class="group inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:translate-x-1.5 py-1">
+              <span class="group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Про нас</span>
+              <i class="fa-solid fa-arrow-right text-[11px] text-indigo-600 dark:text-indigo-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="tracker.html" class="group inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:translate-x-1.5 py-1">
+              <span class="group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Мій простір</span>
+              <i class="fa-solid fa-arrow-right text-[11px] text-indigo-600 dark:text-indigo-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="community.html" class="group inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:translate-x-1.5 py-1">
+              <span class="group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Спільнота</span>
+              <i class="fa-solid fa-arrow-right text-[11px] text-indigo-600 dark:text-indigo-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="footer-social">
+        <ul class="footer-links">
+          <li>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="link-accent inline-flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" aria-label="Instagram">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              <span lang="en">Instagram</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li><a href="community.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Контакти</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-privacy">
+        <div class="privacy-box p-3.5 rounded-xl border border-zinc-300 dark:border-[#3F3F46] bg-white dark:bg-[#27272A]/70 flex items-start gap-3 transition-colors">
+          <i class="fa-solid fa-circle-info text-indigo-500 text-sm mt-0.5" aria-hidden="true"></i>
+          <div>
+            <p class="font-medium text-zinc-900 dark:text-white text-xs">Дані зберігаються локально у твоєму браузері</p>
+            <p class="text-zinc-500 dark:text-zinc-400 text-[11px]">Без реєстрації та трекінгу (localStorage)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
