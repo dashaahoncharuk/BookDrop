@@ -96,10 +96,13 @@
   }
 
   // Підміняємо cover у спільному масиві books, щоб app.js, matcher.js та інші теж бачили стильні обкладинки
+  function applyCovers() {
   (Array.isArray(window.books) ? window.books : []).forEach((book) => {
     if (!book.coverPhoto) book.coverPhoto = book.cover;
     book.cover = coverMode === "styled" || !book.coverPhoto ? createCover(book) : book.coverPhoto;
   });
+}
+applyCovers();
 
   const books = (Array.isArray(window.books) ? window.books : []).map((book) => ({
     ...book,
@@ -257,27 +260,38 @@
     wishlistLabel,
   });
 
-  function initCoverUi() {
+ function initCoverUi() {
+  document.querySelectorAll("img[data-cover-id]").forEach((img) => {
+    const book = booksById.get(String(img.dataset.coverId));
+    if (book) { img.src = book.cover; }
+  });
+
+  const footer = document.querySelector(".site-footer");
+  if (!footer || footer.querySelector("[data-cover-toggle]")) return;
+  const host = footer.querySelector(".footer-brand") || footer;
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "cover-toggle";
+  button.dataset.coverToggle = "";
+  button.textContent = coverMode === "styled" ? "Показати оригінальні обкладинки" : "Показати стильні обкладинки";
+  button.addEventListener("click", () => {
+    coverMode = coverMode === "styled" ? "photo" : "styled";
+    try { localStorage.setItem(COVERS_KEY, coverMode); } catch (error) { /* ignore */ }
+    applyCovers();
+    // оновлюємо копії у booksById
+    (window.books || []).forEach((b) => {
+      const copy = booksById.get(String(b.id));
+      if (copy) copy.cover = b.cover;
+    });
+    button.textContent = coverMode === "styled" ? "Показати оригінальні обкладинки" : "Показати стильні обкладинки";
     document.querySelectorAll("img[data-cover-id]").forEach((img) => {
       const book = booksById.get(String(img.dataset.coverId));
-      if (book) { img.src = book.cover; }
+      if (book) img.src = book.cover;
     });
-
-    const footer = document.querySelector(".site-footer");
-    if (!footer || footer.querySelector("[data-cover-toggle]")) return;
-    const host = footer.querySelector(".footer-brand") || footer;
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "cover-toggle";
-    button.dataset.coverToggle = "";
-    button.textContent = coverMode === "styled" ? "Показати оригінальні обкладинки" : "Показати стильні обкладинки";
-    button.addEventListener("click", () => {
-      try { localStorage.setItem(COVERS_KEY, coverMode === "styled" ? "photo" : "styled"); } catch (error) { /* ignore */ }
-      window.location.reload();
-    });
-    host.append(button);
-  }
-
+    window.dispatchEvent(new CustomEvent("bookdrop:covers-change"));
+  });
+  host.append(button);
+}
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initCoverUi);
   } else {

@@ -234,11 +234,11 @@
                 <span class="matcher-step-number" aria-hidden="true">01</span>
                 <span>Настрій</span>
               </h3>
-              <div class="matcher-chips" role="group" aria-label="Оберіть настрій">
-                <button type="button" class="matcher-chip" aria-pressed="true">Затишок &amp; Кава</button>
-                <button type="button" class="matcher-chip" aria-pressed="false">Адреналін &amp; Детектив</button>
-                <button type="button" class="matcher-chip" aria-pressed="false">Інтелектуальний виклик</button>
-                <button type="button" class="matcher-chip" aria-pressed="false">Легкий романс</button>
+              <div class="matcher-chips" role="group" aria-label="Оберіть настрій" data-step="mood">
+                <button type="button" class="matcher-chip bg-indigo-600 text-white border-indigo-600" data-moods="cozy,uplifting" aria-pressed="true">Затишок &amp; Кава</button>
+                <button type="button" class="matcher-chip" data-moods="mysterious,dark,drive" aria-pressed="false">Адреналін &amp; Детектив</button>
+                <button type="button" class="matcher-chip" data-moods="intellectual" aria-pressed="false">Інтелектуальний виклик</button>
+                <button type="button" class="matcher-chip" data-moods="romantic,funny" aria-pressed="false">Легкий романс</button>
               </div>
             </div>
 
@@ -248,7 +248,7 @@
                 <span class="matcher-step-number" aria-hidden="true">02</span>
                 <span>Жанр</span>
               </h3>
-              <div class="matcher-chips" role="group" aria-label="Оберіть жанр">
+              <div class="matcher-chips" role="group" aria-label="Оберіть жанр" data-step="genre">
                 <button type="button" class="matcher-chip" data-genre="novel" aria-pressed="false">Роман</button>
                 <button type="button" class="matcher-chip" data-genre="fantasy" aria-pressed="false">Фентезі</button>
                 <button type="button" class="matcher-chip" data-genre="thriller" aria-pressed="false">Детектив / Трилер</button>
@@ -282,16 +282,16 @@
                 <span class="matcher-step-number" aria-hidden="true">04</span>
                 <span>Час / Обсяг</span>
               </h3>
-              <div class="matcher-chips" role="group" aria-label="Оберіть обсяг книги">
-                <button type="button" class="matcher-chip" aria-pressed="false">До 300 стор.</button>
-                <button type="button" class="matcher-chip" aria-pressed="false">Масивний роман</button>
-                <button type="button" class="matcher-chip" aria-pressed="true">Не має значення</button>
+              <div class="matcher-chips" role="group" aria-label="Оберіть обсяг книги" data-step="length">
+                <button type="button" class="matcher-chip" data-length="short" aria-pressed="false">До 300 стор.</button>
+                <button type="button" class="matcher-chip" data-length="long" aria-pressed="false">Масивний роман</button>
+                <button type="button" class="matcher-chip bg-indigo-600 text-white border-indigo-600" data-length="any" aria-pressed="true">Не має значення</button>
               </div>
             </div>
           </div>
 
           <div class="matcher-actions">
-            <button type="button" class="btn btn-primary matcher-submit">
+            <button type="button" class="btn btn-primary matcher-submit" aria-controls="books" aria-expanded="false">
               Згенерувати дроп <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
             </button>
           </div>
@@ -314,72 +314,107 @@
       </div>
 
       <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <li>
-          <div class="group relative flex flex-col h-full p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-500/60 shadow-sm dark:shadow-none hover:shadow-xl hover:shadow-indigo-500/10">
-            <div class="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-[#27272A] border border-zinc-200 dark:border-[#3F3F46] group-hover:border-indigo-500/50 flex items-center justify-center mb-5 transition-all">
-              <img src="assets/icons/icon-mood.svg" onerror="this.onerror=null; this.src='assets/icons/icon-mood.png';" alt="" aria-hidden="true" class="w-6 h-6 transition-transform group-hover:scale-110">
+        <li class="flip-card">
+          <div class="flip-card__inner" tabindex="0" role="button" aria-pressed="false" aria-label="Перевернути картку «Вайб-пошук»">
+            <!-- Лицьова сторона -->
+            <div class="flip-card__face group relative flex flex-col h-full p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl shadow-sm dark:shadow-none">
+              <div class="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-[#27272A] border border-zinc-200 dark:border-[#3F3F46] flex items-center justify-center mb-5">
+                <img src="assets/icons/icon-mood.svg" onerror="this.onerror=null; this.src='assets/icons/icon-mood.png';" alt="" aria-hidden="true" class="w-6 h-6">
+              </div>
+              <h3 class="text-lg font-bold text-zinc-900 dark:text-white">Вайб-пошук</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">Вайб-пошук замість полиць: знайди книгу під настрій</p>
             </div>
-            <h3 class="text-lg font-bold text-zinc-900 dark:text-white group-hover:text-indigo-500 transition-colors">Вайб-пошук</h3>
-            <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">Вайб-пошук замість полиць: знайди книгу під настрій</p>
+            <!-- Зворотна сторона: велика іконка -->
+            <div class="flip-card__face flip-card__back bg-white dark:bg-[#18181B] border border-indigo-500/60 rounded-2xl shadow-xl shadow-indigo-500/10">
+              <div class="w-28 h-28 rounded-2xl bg-zinc-100 dark:bg-[#27272A] flex items-center justify-center">
+                <img src="assets/icons/icon-mood.svg" onerror="this.onerror=null; this.src='assets/icons/icon-mood.png';" alt="" aria-hidden="true" class="w-20 h-20 object-contain">
+              </div>
+            </div>
           </div>
         </li>
 
-        <li>
-          <div class="group relative flex flex-col h-full p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-500/60 shadow-sm dark:shadow-none hover:shadow-xl hover:shadow-indigo-500/10">
-            <div class="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-[#27272A] border border-zinc-200 dark:border-[#3F3F46] group-hover:border-indigo-500/50 flex items-center justify-center mb-5 transition-all">
-              <img src="assets/icons/icon-suspense.svg" onerror="this.onerror=null; this.src='assets/icons/icon-suspense.png';" alt="" aria-hidden="true" class="w-6 h-6 transition-transform group-hover:scale-110">
+        <li class="flip-card">
+          <div class="flip-card__inner" tabindex="0" role="button" aria-pressed="false" aria-label="Перевернути картку «Рівень напруги»">
+            <!-- Лицьова сторона -->
+            <div class="flip-card__face group relative flex flex-col h-full p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl shadow-sm dark:shadow-none">
+              <div class="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-[#27272A] border border-zinc-200 dark:border-[#3F3F46] flex items-center justify-center mb-5">
+                <img src="assets/icons/icon-suspense.svg" onerror="this.onerror=null; this.src='assets/icons/icon-suspense.png';" alt="" aria-hidden="true" class="w-6 h-6">
+              </div>
+              <h3 class="text-lg font-bold text-zinc-900 dark:text-white">Рівень напруги (1–10)</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">Шкала 1–10 показує рівень напруги та саспенсу</p>
             </div>
-            <h3 class="text-lg font-bold text-zinc-900 dark:text-white group-hover:text-indigo-500 transition-colors">Рівень напруги (1–10)</h3>
-            <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">Шкала 1–10 показує рівень напруги та саспенсу</p>
+            <!-- Зворотна сторона: велика іконка -->
+            <div class="flip-card__face flip-card__back bg-white dark:bg-[#18181B] border border-indigo-500/60 rounded-2xl shadow-xl shadow-indigo-500/10">
+              <div class="w-28 h-28 rounded-2xl bg-zinc-100 dark:bg-[#27272A] flex items-center justify-center">
+                <img src="assets/icons/icon-suspense.svg" onerror="this.onerror=null; this.src='assets/icons/icon-suspense.png';" alt="" aria-hidden="true" class="w-20 h-20 object-contain">
+              </div>
+            </div>
           </div>
         </li>
 
-        <li>
-          <div class="group relative flex flex-col h-full p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-500/60 shadow-sm dark:shadow-none hover:shadow-xl hover:shadow-indigo-500/10">
-            <div class="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-[#27272A] border border-zinc-200 dark:border-[#3F3F46] group-hover:border-indigo-500/50 flex items-center justify-center mb-5 transition-all">
-              <img src="assets/icons/icon-tracker.svg" onerror="this.onerror=null; this.src='assets/icons/icon-tracker.png';" alt="" aria-hidden="true" class="w-6 h-6 transition-transform group-hover:scale-110">
+        <li class="flip-card">
+          <div class="flip-card__inner" tabindex="0" role="button" aria-pressed="false" aria-label="Перевернути картку «Щоденник читання»">
+            <!-- Лицьова сторона -->
+            <div class="flip-card__face group relative flex flex-col h-full p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl shadow-sm dark:shadow-none">
+              <div class="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-[#27272A] border border-zinc-200 dark:border-[#3F3F46] flex items-center justify-center mb-5">
+                <img src="assets/icons/icon-tracker.svg" onerror="this.onerror=null; this.src='assets/icons/icon-tracker.png';" alt="" aria-hidden="true" class="w-6 h-6">
+              </div>
+              <h3 class="text-lg font-bold text-zinc-900 dark:text-white">Щоденник читання</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">Щоденник читання та простір збережених заміток</p>
             </div>
-            <h3 class="text-lg font-bold text-zinc-900 dark:text-white group-hover:text-indigo-500 transition-colors">Щоденник читання</h3>
-            <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">Щоденник читання та простір збережених заміток</p>
+            <!-- Зворотна сторона: велика іконка -->
+            <div class="flip-card__face flip-card__back bg-white dark:bg-[#18181B] border border-indigo-500/60 rounded-2xl shadow-xl shadow-indigo-500/10">
+              <div class="w-28 h-28 rounded-2xl bg-zinc-100 dark:bg-[#27272A] flex items-center justify-center">
+                <img src="assets/icons/icon-tracker.svg" onerror="this.onerror=null; this.src='assets/icons/icon-tracker.png';" alt="" aria-hidden="true" class="w-20 h-20 object-contain">
+              </div>
+            </div>
           </div>
         </li>
 
-        <li>
-          <div class="group relative flex flex-col h-full p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-500/60 shadow-sm dark:shadow-none hover:shadow-xl hover:shadow-indigo-500/10">
-            <div class="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-[#27272A] border border-zinc-200 dark:border-[#3F3F46] group-hover:border-indigo-500/50 flex items-center justify-center mb-5 transition-all">
-              <img src="assets/icons/icon-wishlist.svg" onerror="this.onerror=null; this.src='assets/icons/icon-wishlist.png';" alt="" aria-hidden="true" class="w-6 h-6 transition-transform group-hover:scale-110">
+        <li class="flip-card">
+          <div class="flip-card__inner" tabindex="0" role="button" aria-pressed="false" aria-label="Перевернути картку «Мій вішлист»">
+            <!-- Лицьова сторона -->
+            <div class="flip-card__face group relative flex flex-col h-full p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl shadow-sm dark:shadow-none">
+              <div class="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-[#27272A] border border-zinc-200 dark:border-[#3F3F46] flex items-center justify-center mb-5">
+                <img src="assets/icons/icon-wishlist.svg" onerror="this.onerror=null; this.src='assets/icons/icon-wishlist.png';" alt="" aria-hidden="true" class="w-6 h-6">
+              </div>
+              <h3 class="text-lg font-bold text-zinc-900 dark:text-white">Мій вішлист</h3>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">Вішлист бажаного та полички у моєму просторі</p>
             </div>
-            <h3 class="text-lg font-bold text-zinc-900 dark:text-white group-hover:text-indigo-500 transition-colors">Мій вішлист</h3>
-            <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">Вішлист бажаного та полички у моєму просторі</p>
+            <!-- Зворотна сторона: велика іконка -->
+            <div class="flip-card__face flip-card__back bg-white dark:bg-[#18181B] border border-indigo-500/60 rounded-2xl shadow-xl shadow-indigo-500/10">
+              <div class="w-28 h-28 rounded-2xl bg-zinc-100 dark:bg-[#27272A] flex items-center justify-center">
+                <img src="assets/icons/icon-wishlist.svg" onerror="this.onerror=null; this.src='assets/icons/icon-wishlist.png';" alt="" aria-hidden="true" class="w-20 h-20 object-contain">
+              </div>
+            </div>
           </div>
         </li>
       </ul>
     </section>
 
-    <!-- 4. СЕКЦІЯ: РЕКОМЕНДАЦІЇ (ДИНАМІЧНИЙ ДРОП) -->
-    <section class="py-10 sm:py-14 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="books" aria-labelledby="books-title">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-zinc-200 dark:border-[#27272A] pb-6">
-        <div>
-          <span class="inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase text-indigo-600 dark:text-indigo-400 mb-2">
-            <span aria-hidden="true">#</span>ТВІЙ НАСТУПНИЙ ДРОП
-          </span>
-          <h2 id="books-title" class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
-            Історії для твого сьогодні
-          </h2>
-          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1">
-            Ось твій персональний дроп під обраний вайб, жанр і напругу
-          </p>
-        </div>
-        <a href="tracker.html" class="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline py-1">
-          Усі добірки <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
-        </a>
-      </div>
-
-      <!-- Контейнер, куди JS рендерить картки книг -->
-      <ul id="recommendations-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Картки автоматично генеруються та оновлюються з js/app.js -->
-      </ul>
-    </section>
+   <!-- 4. СЕКЦІЯ: РЕКОМЕНДАЦІЇ (ДИНАМІЧНИЙ ДРОП) — прихована на старті -->
+<section class="py-10 sm:py-14 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="books" style="display: none;" aria-labelledby="books-title">
+  <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-zinc-200 dark:border-[#27272A] pb-6">
+    <div>
+      <span class="inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase text-indigo-600 dark:text-indigo-400 mb-2">
+        <span aria-hidden="true">#</span>ТВІЙ НАСТУПНИЙ ДРОП
+      </span>
+      <h2 id="books-title" class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
+        Історії для твого сьогодні
+      </h2>
+      <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1">
+        Ось твій персональний дроп під обраний вайб, жанр і напругу
+      </p>
+    </div>
+    <a href="tracker.html" class="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline py-1">
+      Усі добірки <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+    </a>
+  </div>
+  <!-- Контейнер для карток -->
+  <ul id="recommendations-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Генерується через JS після квізу -->
+  </ul>
+</section>
 
     <!-- 5. СЕКЦІЯ: ВІДГУКИ ЧИТАЧІВ -->
     <section class="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="testimonials-title">
