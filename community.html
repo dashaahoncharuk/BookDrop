@@ -1,627 +1,611 @@
 <!DOCTYPE html>
 <html lang="uk" class="dark scroll-smooth" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Спільнота читачів BookDrop. Запропонуй книгу або поділися враженнями.">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="uk_UA">
-    <meta property="og:site_name" content="BookDrop.">
-    <meta property="og:title" content="Спільнота — BookDrop.">
-    <meta property="og:description" content="Спільнота читачів BookDrop.">
-    <title>Спільнота — BookDrop.</title>
-    
-    <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: { bg: '#121212', surface: '#18181B', raised: '#27272A', border: '#3F3F46', primary: '#4F46E5', violet: '#6366F1', mint: '#10B981' }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        display: ['Raleway', 'sans-serif']
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Спільнота читачів BookDrop. Запропонуй книгу або поділися враженнями.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="uk_UA">
+  <meta property="og:site_name" content="BookDrop.">
+  <meta property="og:title" content="Спільнота — BookDrop.">
+  <meta property="og:description" content="Спільнота читачів BookDrop.">
+  <title>Спільнота — BookDrop.</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { bg: '#121212', surface: '#18181B', raised: '#27272A', border: '#3F3F46', primary: '#4F46E5', violet: '#6366F1', mint: '#10B981' }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Raleway', 'sans-serif']
+          }
         }
-    </script>
+      }
+    }
+  </script>
 
-    <!-- Тема до завантаження DOM для запобігання мерехтінню -->
-    <script>
-        (() => {
-            try {
-                const savedTheme = localStorage.getItem('bookdrop-theme') || localStorage.getItem('theme');
-                if (savedTheme === 'light') {
-                    document.documentElement.classList.remove('dark');
-                    document.documentElement.setAttribute('data-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                }
-            } catch (e) {
-                document.documentElement.classList.add('dark');
-            }
-        })();
-    </script>
+  <!-- Тема до завантаження DOM для запобігання мерехтінню -->
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem('bookdrop-theme') || localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/pages.css">
-    <link rel="stylesheet" href="css/community.css">
-    
-    <script src="js/books.js" defer></script>
-    <script src="js/store.js" defer></script>
-    <script src="js/app.js" defer></script>
-    <script src="js/community-util.js" defer></script>
-    <script src="js/community.js" defer></script>
-    <script src="js/community-extras.js" defer></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/community.css">
+
+  <script src="js/books.js" defer></script>
+  <script src="js/store.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/community-util.js" defer></script>
+  <script src="js/community.js" defer></script>
+  <script src="js/community-extras.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/page-ui.js" defer></script>
+  <style>html{scrollbar-gutter:stable}</style>
 </head>
 <body class="bg-zinc-50 text-zinc-900 dark:bg-[#121212] dark:text-[#F9FAFB] font-sans antialiased transition-colors duration-300 selection:bg-indigo-600 selection:text-white">
 
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-300">
-        Перейти до основного вмісту
-    </a>
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-300">
+    Перейти до основного вмісту
+  </a>
 
-    <!-- ШАПКА -->
-    <header class="site-header sticky top-0 z-50 w-full backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-[72px] flex items-center justify-between">
-            <a href="index.html" class="logo flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded-md py-1 min-h-[44px]" aria-label="BookDrop. — на головну сторінку">
-                <svg class="logo-b-icon w-7 h-6" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M2 5h16c1.1 0 2 .9 2 2s-.9 2-2 2H2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                    <path d="M5 7h10" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round"/>
-                    <path d="M2 11h18c1.1 0 2 .9 2 2s-.9 2-2 2H2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                    <path d="M5 13h12" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round"/>
-                    <path d="M2 17h16c1.1 0 2 .9 2 2s-.9 2-2 2H2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-                    <path d="M5 19h10" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round"/>
-                </svg>
-                <span class="logo-text text-xl font-bold tracking-tight font-display">ookDrop<span class="logo-dot text-indigo-500">.</span></span>
-            </a>
+  <!-- ШАПКА -->
+  <header class="site-header sticky top-0 z-50 w-full backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-[72px] flex items-center justify-between">
+      <a href="index.html" class="logo flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded-md py-1 min-h-[44px]" aria-label="BookDrop. — на головну сторінку">
+        <svg class="logo-b-icon w-7 h-6" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M2 5h16c1.1 0 2 .9 2 2s-.9 2-2 2H2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M5 7h10" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M2 11h18c1.1 0 2 .9 2 2s-.9 2-2 2H2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M5 13h12" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M2 17h16c1.1 0 2 .9 2 2s-.9 2-2 2H2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M5 19h10" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-text text-xl font-bold tracking-tight font-display">ookDrop<span class="logo-dot text-indigo-500">.</span></span>
+      </a>
 
-            <nav class="hidden md:flex items-center" aria-label="Головна навігація">
-                <ul class="flex items-center gap-6 lg:gap-8 text-sm font-medium">
-                    <li><a href="index.html" class="nav-link py-2 inline-flex items-center min-h-[44px]">Головна</a></li>
-                    <li><a href="index.html#matcher" class="nav-link py-2 inline-flex items-center min-h-[44px]">Вайб-пошук</a></li>
-                    <li><a href="index.html#media-hub" class="nav-link py-2 inline-flex items-center min-h-[44px]">Медіа-хаб</a></li>
-                    <li><a href="about.html" class="nav-link py-2 inline-flex items-center min-h-[44px]">Про нас</a></li>
-                    <li><a href="tracker.html" class="nav-link py-2 inline-flex items-center min-h-[44px]">Мій простір</a></li>
-                    <li><a href="community.html" class="nav-link active py-2 border-b-2 border-indigo-500 inline-flex items-center min-h-[44px]" aria-current="page">Спільнота</a></li>
-                </ul>
-            </nav>
+      <nav class="hidden md:flex items-center" aria-label="Головна навігація">
+        <ul class="flex items-center gap-6 lg:gap-8 text-sm font-medium">
+          <li><a href="index.html" class="nav-link py-2 inline-flex items-center min-h-[44px]">Головна</a></li>
+          <li><a href="index.html#matcher" class="nav-link py-2 inline-flex items-center min-h-[44px]">Вайб-пошук</a></li>
+          <li><a href="index.html#media-hub" class="nav-link py-2 inline-flex items-center min-h-[44px]">Медіа-хаб</a></li>
+          <li><a href="about.html" class="nav-link py-2 inline-flex items-center min-h-[44px]">Про нас</a></li>
+          <li><a href="tracker.html" class="nav-link py-2 inline-flex items-center min-h-[44px]">Мій простір</a></li>
+          <li><a href="community.html" class="nav-link active py-2 border-b-2 border-indigo-500 inline-flex items-center min-h-[44px]" aria-current="page">Спільнота</a></li>
+        </ul>
+      </nav>
 
-            <div class="header-actions flex items-center gap-2 sm:gap-3">
-                <button type="button" class="btn-theme flex items-center justify-center w-11 h-11 md:w-10 md:h-10 rounded-lg hover:border-indigo-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Перемкнути тему сайту">
-                    <i class="fa-solid fa-circle-half-stroke text-base" aria-hidden="true"></i>
-                </button>
-                <a href="tracker.html#wishlist" class="wishlist-badge inline-flex items-center gap-2 h-11 md:h-10 px-3.5 rounded-lg hover:border-indigo-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Перейти у вішлист">
-                    <i class="fa-regular fa-heart text-indigo-500" aria-hidden="true"></i>
-                    <span class="wishlist-count text-xs font-semibold px-1.5 py-0.5 rounded-full bg-indigo-600 text-white" aria-live="polite">0</span>
-                </a>
-                <a href="index.html#matcher" class="btn btn-primary hidden sm:inline-flex items-center justify-center min-h-[44px] md:min-h-[40px] px-4 rounded-lg text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
-                    Підібрати книгу
-                </a>
-                <button type="button" id="mobile-menu-btn" class="btn-theme md:hidden flex items-center justify-center w-11 h-11 rounded-lg hover:border-indigo-400 transition-colors" aria-label="Відкрити головне меню" aria-expanded="false" aria-controls="mobile-menu">
-                    <i class="fa-solid fa-bars text-lg" id="mobile-menu-icon" aria-hidden="true"></i>
-                </button>
-            </div>
+      <div class="header-actions flex items-center gap-2 sm:gap-3">
+        <button type="button" data-theme-toggle class="btn-theme flex items-center justify-center w-11 h-11 md:w-10 md:h-10 rounded-lg hover:border-indigo-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Перемкнути тему сайту">
+          <i class="fa-solid fa-circle-half-stroke text-base" aria-hidden="true"></i>
+        </button>
+        <a href="tracker.html#wishlist" class="wishlist-badge inline-flex items-center gap-2 h-11 md:h-10 px-3.5 rounded-lg hover:border-indigo-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400" aria-label="Перейти у вішлист">
+          <i class="fa-regular fa-heart text-indigo-500" aria-hidden="true"></i>
+          <span class="wishlist-count text-xs font-semibold px-1.5 py-0.5 rounded-full bg-indigo-600 text-white" aria-live="polite">0</span>
+        </a>
+        <a href="index.html#matcher" class="btn btn-primary hidden sm:inline-flex items-center justify-center min-h-[44px] md:min-h-[40px] px-4 rounded-lg text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+          Підібрати книгу
+        </a>
+        <button type="button" id="mobile-menu-btn" class="btn-theme md:hidden flex items-center justify-center w-11 h-11 rounded-lg hover:border-indigo-400 transition-colors" aria-label="Відкрити головне меню" aria-expanded="false" aria-controls="mobile-menu">
+          <i class="fa-solid fa-bars text-lg" id="mobile-menu-icon" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden border-t border-zinc-200 dark:border-[#3F3F46] bg-white dark:bg-[#18181B] px-4 pt-3 pb-6 transition-all duration-200">
+      <ul class="flex flex-col space-y-2 text-base font-medium">
+        <li><a href="index.html" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Головна</a></li>
+        <li><a href="index.html#matcher" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Вайб-пошук</a></li>
+        <li><a href="index.html#media-hub" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Медіа-хаб</a></li>
+        <li><a href="about.html" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Про нас</a></li>
+        <li><a href="tracker.html" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Мій простір</a></li>
+        <li><a href="community.html" class="flex items-center min-h-[44px] py-2 text-indigo-600 dark:text-indigo-400 border-b border-zinc-200 dark:border-[#27272A]" aria-current="page">Спільнота</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main-content" class="page-main community-main" tabindex="-1">
+
+    <!-- ПЕРШИЙ ЕКРАН -->
+    <section class="community-hero" aria-labelledby="community-title">
+      <div>
+        <h1 class="hero-title" id="community-title">Спільнота BookDrop</h1>
+        <p class="hero-lede">Читай разом: збирай досягнення, тримай серію, голосуй за книгу місяця й ділися враженнями без спойлерів. Реєстрація не потрібна.</p>
+
+        <div class="hero-stats" role="group" aria-label="Спільнота в цифрах">
+          <button type="button" class="hero-stat" data-hero-stat="books" data-jump="clubs" aria-label="Перейти до клубів">
+            <i class="fa-solid fa-book" aria-hidden="true"></i>
+            <strong>0</strong>
+            <span>книг</span>
+          </button>
+          <button type="button" class="hero-stat" data-hero-stat="clubs" data-jump="clubs" aria-label="Перейти до клубів">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+            <strong>0</strong>
+            <span>клубів</span>
+          </button>
+          <button type="button" class="hero-stat" data-hero-stat="reviews" data-jump="discussions" aria-label="Перейти до відгуків">
+            <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
+            <strong>0</strong>
+            <span>відгуків</span>
+          </button>
+          <button type="button" class="hero-stat" data-hero-stat="streak" data-jump="progress" aria-label="Перейти до мого прогресу">
+            <i class="fa-solid fa-fire" aria-hidden="true"></i>
+            <strong>0</strong>
+            <span>днів серії</span>
+          </button>
         </div>
+      </div>
 
-        <div id="mobile-menu" class="hidden md:hidden border-t border-zinc-200 dark:border-[#3F3F46] bg-white dark:bg-[#18181B] px-4 pt-3 pb-6 transition-all duration-200">
-            <ul class="flex flex-col space-y-2 text-base font-medium">
-                <li><a href="index.html" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Головна</a></li>
-                <li><a href="index.html#matcher" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Вайб-пошук</a></li>
-                <li><a href="index.html#media-hub" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Медіа-хаб</a></li>
-                <li><a href="about.html" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Про нас</a></li>
-                <li><a href="tracker.html" class="flex items-center min-h-[44px] py-2 text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-[#27272A]">Мій простір</a></li>
-                <li><a href="community.html" class="flex items-center min-h-[44px] py-2 text-indigo-600 dark:text-indigo-400 border-b border-zinc-200 dark:border-[#27272A]" aria-current="page">Спільнота</a></li>
+      <div class="hero-mosaic" aria-hidden="true">
+        <div class="mosaic" data-mosaic></div>
+      </div>
+    </section>
+
+    <!-- ВКЛАДКИ РОЗДІЛІВ -->
+    <div class="tabs-wrap" role="tablist" aria-label="Розділи спільноти">
+      <button type="button" class="tab" role="tab" id="tab-today" data-tab="today" aria-controls="panel-today" aria-selected="true">
+        <i class="fa-solid fa-sun" aria-hidden="true"></i>Сьогодні
+      </button>
+      <button type="button" class="tab" role="tab" id="tab-progress" data-tab="progress" aria-controls="panel-progress" aria-selected="false">
+        <i class="fa-solid fa-chart-simple" aria-hidden="true"></i>Мій прогрес
+      </button>
+      <button type="button" class="tab" role="tab" id="tab-vote" data-tab="vote" aria-controls="panel-vote" aria-selected="false">
+        <i class="fa-solid fa-check-to-slot" aria-hidden="true"></i>Книга місяця
+      </button>
+      <button type="button" class="tab" role="tab" id="tab-clubs" data-tab="clubs" aria-controls="panel-clubs" aria-selected="false">
+        <i class="fa-solid fa-users" aria-hidden="true"></i>Клуби<span class="tab-count">3</span>
+      </button>
+      <button type="button" class="tab" role="tab" id="tab-discussions" data-tab="discussions" aria-controls="panel-discussions" aria-selected="false">
+        <i class="fa-solid fa-comments" aria-hidden="true"></i>Обговорення
+      </button>
+      <button type="button" class="tab" role="tab" id="tab-more" data-tab="more" aria-controls="panel-more" aria-selected="false">
+        <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>Пропозиції та правила
+      </button>
+
+      <div class="tab-extra">
+        <a class="tab-link" href="tracker.html">
+          Мій простір <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- СЬОГОДНІ -->
+    <section class="tabpanel" id="panel-today" role="tabpanel" aria-labelledby="tab-today">
+      <header class="section-head">
+        <div>
+          <h2 class="section-title">Сьогодні в спільноті</h2>
+          <p class="section-note">Книга тижня змінюється щопонеділка, порада дня — щодоби.</p>
+        </div>
+      </header>
+
+      <div class="today-grid">
+        <div data-week-book></div>
+
+        <div class="side-stack">
+          <aside class="tip-card" aria-labelledby="tip-title">
+            <span class="club-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span>
+            <h3 class="club-name" id="tip-title">Порада дня</h3>
+            <p class="tip-text" data-tip></p>
+          </aside>
+
+          <section class="panel" aria-labelledby="today-plan-title">
+            <h3 class="panel-title" id="today-plan-title">Що веде сьогодні</h3>
+            <ul class="rules-list">
+              <li><i class="fa-solid fa-fire" aria-hidden="true"></i><span>Серія читання рахується з «Мого простору» — одна сесія за день.</span></li>
+              <li><i class="fa-solid fa-check-to-slot" aria-hidden="true"></i><span>Голосування за книгу місяця триває до останнього дня місяця.</span></li>
+              <li><i class="fa-solid fa-comments" aria-hidden="true"></i><span>Відгуки без спойлерів: фінал і повороти сюжету — під забороною.</span></li>
             </ul>
+          </section>
         </div>
-    </header>
+      </div>
+    </section>
 
-    <!-- ОСНОВНИЙ ВМІСТ -->
-    <main id="main-content" class="page-main community-main" tabindex="-1">
-        
-        <header class="community-hero">
-            <div class="hero-copy">
-                <h1 class="community-title">Спільнота BookDrop</h1>
-                <p class="community-lede">Читай разом: збирай досягнення, тримай серію, голосуй за книгу місяця й діліся враженнями без спойлерів. Реєстрація не потрібна.</p>
-                <ul class="hero-stats" aria-label="Спільнота в цифрах">
-                    <li data-hero-stat="books"><strong>0</strong><span>книг</span></li>
-                    <li data-hero-stat="clubs"><strong>0</strong><span>клубів</span></li>
-                    <li data-hero-stat="reviews"><strong>0</strong><span>відгуків</span></li>
-                    <li data-hero-stat="streak"><strong>0</strong><span>днів серії</span></li>
-                </ul>
-                <nav class="community-shortcuts" aria-label="Розділи спільноти">
-                    <a href="#today">Сьогодні</a>
-                    <a href="#progress">Мій прогрес</a>
-                    <a href="#vote">Книга місяця</a>
-                    <a href="#clubs">Клуби</a>
-                    <a href="#discussions">Обговорення</a>
-                    <a href="#suggest-form">Запропонувати тайтл</a>
-                    <a href="#contacts">Правила</a>
-                </nav>
-            </div>
-            <div class="hero-mosaic" aria-hidden="true"><div class="mosaic" data-mosaic></div></div>
-        </header>
-
-        <!-- СЬОГОДНІ В СПІЛЬНОТІ -->
-        <section class="community-section" id="today" aria-labelledby="today-title">
-            <header class="community-section-header">
-                <h2 id="today-title" class="community-section-title">Сьогодні в спільноті</h2>
-                <p class="community-section-note">Книга тижня змінюється щопонеділка, порада дня — щодоби.</p>
-            </header>
-            <div class="today-grid">
-                <div data-week-book></div>
-                <aside class="panel tip-card" aria-labelledby="tip-title">
-                    <span class="club-icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span>
-                    <h3 id="tip-title" class="club-name">Порада дня</h3>
-                    <p class="tip-text" data-tip></p>
-                </aside>
-            </div>
-        </section>
-
-        <!-- ПРОГРЕС -->
-        <section class="community-section" id="progress" aria-labelledby="progress-title">
-            <header class="community-section-header">
-                <h2 id="progress-title" class="community-section-title">Мій прогрес</h2>
-                <p class="community-section-note">Серія, таймер, челендж і досягнення рахуються з вашого прогресу в «Моєму просторі».</p>
-            </header>
-            <div class="progress-grid">
-                <section class="panel" aria-labelledby="streak-title">
-                    <h3 id="streak-title" class="panel-title">Серія читання</h3>
-                    <div data-streak></div>
-                </section>
-                <section class="panel timer-card" aria-labelledby="timer-title" data-timer>
-                    <h3 id="timer-title" class="panel-title">Таймер читання</h3>
-                    <div class="timer-ring" data-timer-ring style="--p:0">
-                        <p class="timer-display" data-timer-display role="timer" aria-live="off">25:00</p>
-                    </div>
-                    <div class="timer-presets" role="group" aria-label="Тривалість сесії, хвилин">
-                        <button type="button" class="chip" data-timer-preset="15" aria-pressed="false">15</button>
-                        <button type="button" class="chip" data-timer-preset="25" aria-pressed="true">25</button>
-                        <button type="button" class="chip" data-timer-preset="45" aria-pressed="false">45</button>
-                    </div>
-                    <div class="btn-row timer-actions">
-                        <button type="button" class="btn btn-primary" data-timer-toggle>Старт</button>
-                        <button type="button" class="link-button" data-timer-reset>Скинути</button>
-                    </div>
-                    <p class="field-hint">Після завершення сесії день зараховується в серію.</p>
-                </section>
-            </div>
-            <div class="panel progress-challenge" aria-labelledby="challenge-title">
-                <h3 id="challenge-title" class="panel-title">Читацький челендж 2026</h3>
-                <p class="community-section-note">Книга зараховується, коли прочитано всі сторінки.</p>
-                <div data-challenge></div>
-            </div>
-            <div class="badges-header">
-                <h3 class="community-section-title badges-title">Досягнення</h3>
-                <p class="posts-count" data-badges-summary aria-live="polite"></p>
-            </div>
-            <ul class="badges-grid" data-badges aria-label="Досягнення"></ul>
-            <div class="panel year-card">
-                <div class="year-preview"><canvas data-year-canvas width="1080" height="1350" role="img" aria-label="Картка «Мій рік у книгах» з вашою статистикою"></canvas></div>
-                <div class="year-copy">
-                    <h3 class="panel-title">Мій рік у книгах</h3>
-                    <p class="community-section-note">Картка зі статистикою читання й обкладинками вашої полиці. Збережи її картинкою та поділись в Instagram.</p>
-                    <div class="btn-row">
-                        <button type="button" class="btn btn-primary" data-year-download><i class="fa-solid fa-download" aria-hidden="true"></i> Завантажити PNG</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ГОЛОСУВАННЯ -->
-        <section class="community-section" id="vote" aria-labelledby="vote-title">
-            <header class="community-section-header">
-                <h2 id="vote-title" class="community-section-title">Книга місяця: <span data-vote-month>цього місяця</span></h2>
-                <p class="community-section-note">Чотири кандидати з різних жанрів. Обери свого фаворита.</p>
-            </header>
-            <div data-vote></div>
-        </section>
-
-        <!-- КЛУБИ -->
-        <section class="community-section" id="clubs" aria-labelledby="clubs-title">
-            <header class="community-section-header">
-                <h2 id="clubs-title" class="community-section-title">Книжкові клуби</h2>
-                <p class="community-section-note">Ілюстративні клуби за жанрами. Вступ зберігається лише в цьому браузері.</p>
-            </header>
-            <ul class="clubs-grid" data-clubs aria-label="Книжкові клуби"></ul>
-            <h3 class="subsection-title" id="meetings-title">Найближчі зустрічі</h3>
-            <ul class="meetings-grid" data-meetings aria-labelledby="meetings-title"></ul>
-        </section>
-
-        <!-- ОБГОВОРЕННЯ Й ВІДГУКИ -->
-        <section class="community-section" id="discussions" aria-labelledby="discussions-title">
-            <header class="community-section-header">
-                <h2 id="discussions-title" class="community-section-title">Обговорення й відгуки</h2>
-                <p class="community-section-note">Поділись враженнями про книгу. Нові відгуки й відповіді видно лише тобі, бо дані не залишають браузер.</p>
-            </header>
-            <div class="discussion">
-                <form class="panel review-form" data-review-form novalidate aria-labelledby="review-form-title">
-                    <h3 id="review-form-title">Написати відгук</h3>
-                    <div class="field">
-                        <label for="review-name">Ім’я (необов’язково)</label>
-                        <input type="text" id="review-name" maxlength="40" autocomplete="nickname" placeholder="Напр., Олена">
-                    </div>
-                    <div class="field">
-                        <label for="review-book">Книга</label>
-                        <select id="review-book" aria-describedby="review-book-error"></select>
-                        <p class="field-error" id="review-book-error" data-error="book" aria-live="polite"></p>
-                    </div>
-                    <fieldset class="field rating-group">
-                        <legend>Оцінка</legend>
-                        <div class="rating-options">
-                            <input type="radio" name="rating" id="rating-1" value="1"><label for="rating-1" aria-label="1 із 5">1</label>
-                            <input type="radio" name="rating" id="rating-2" value="2"><label for="rating-2" aria-label="2 із 5">2</label>
-                            <input type="radio" name="rating" id="rating-3" value="3"><label for="rating-3" aria-label="3 із 5">3</label>
-                            <input type="radio" name="rating" id="rating-4" value="4"><label for="rating-4" aria-label="4 із 5">4</label>
-                            <input type="radio" name="rating" id="rating-5" value="5"><label for="rating-5" aria-label="5 із 5">5</label>
-                        </div>
-                        <p class="field-error" data-error="rating" aria-live="polite"></p>
-                    </fieldset>
-                    <div class="field">
-                        <label for="review-text">Твій відгук</label>
-                        <textarea id="review-text" maxlength="700" placeholder="Що тебе зачепило? Без спойлерів!" aria-describedby="review-text-error review-counter"></textarea>
-                        <p class="field-hint" id="review-counter" data-review-counter>0 / 600</p>
-                        <p class="field-error" id="review-text-error" data-error="text" aria-live="polite"></p>
-                    </div>
-                    <div class="btn-row">
-                        <button type="submit" class="btn btn-primary">Опублікувати</button>
-                    </div>
-                    <p class="form-feedback" data-review-feedback aria-live="polite"></p>
-                </form>
-                <div>
-                    <div class="filters" role="search" aria-label="Фільтри відгуків">
-                        <div class="field filter-search">
-                            <label for="post-search">Пошук</label>
-                            <input type="text" id="post-search" placeholder="Книга, автор або слово" autocomplete="off">
-                        </div>
-                        <div class="field">
-                            <label for="post-category">Жанр</label>
-                            <select id="post-category"><option value="all">Усі жанри</option></select>
-                        </div>
-                        <div class="field">
-                            <label for="post-sort">Сортування</label>
-                            <select id="post-sort"><option value="new">Спочатку нові</option><option value="popular">Популярні</option></select>
-                        </div>
-                        <label class="filter-check"><input type="checkbox" id="post-mine"> Лише мої</label>
-                    </div>
-                    <div class="posts-toolbar">
-                        <h3 class="visually-hidden">Стрічка відгуків</h3>
-                        <p class="posts-count" data-posts-count aria-live="polite"></p>
-                        <button type="button" class="link-button" data-filters-reset>Скинути фільтри</button>
-                    </div>
-                    <ul class="posts-list" data-posts aria-label="Стрічка відгуків"></ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- НОВА ІНТЕГРОВАНА ФОРМА ЗВОРОТНОГО ЗВ'ЯЗКУ (ЗАПРОПОНУВАТИ КНИГУ) -->
-        <section class="community-section" id="suggest-form" aria-labelledby="suggest-form-title">
-            <header class="community-section-header">
-                <h2 id="suggest-form-title" class="community-section-title">Запропонувати тайтл у каталог</h2>
-                <p class="community-section-note">Маєш улюблену книгу, якої ще немає на BookDrop? Поділися з нами — модератори перевірять пропозицію[cite: 3, 4].</p>
-            </header>
-
-            <div class="mx-auto w-full max-w-2xl rounded-3xl border border-zinc-800 bg-zinc-900/60 p-6 shadow-2xl shadow-indigo-950/40 sm:p-10">
-                <!-- ФОРМА -->
-                <form id="dropForm" novalidate class="space-y-6 transition-opacity duration-300">
-                    
-                    <!-- Назва книги -->
-                    <div>
-                        <label for="title" class="mb-2 block text-sm font-medium text-zinc-200">
-                            Назва книги <span class="text-violet-400" aria-hidden="true">*</span>
-                        </label>
-                        <input id="title" name="title" type="text" autocomplete="off" placeholder="Наприклад, «Тіні забутих предків»" aria-required="true" aria-describedby="title-error" class="field min-h-[48px] w-full rounded-xl border border-zinc-700 bg-zinc-950/60 px-4 py-3 text-base text-zinc-100 placeholder-zinc-500 transition duration-200 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40">
-                        <p id="title-error" role="alert" class="mt-2 hidden text-sm text-red-400"></p>
-                    </div>
-
-                    <!-- Автор -->
-                    <div>
-                        <label for="author" class="mb-2 block text-sm font-medium text-zinc-200">
-                            Автор <span class="text-violet-400" aria-hidden="true">*</span>
-                        </label>
-                        <input id="author" name="author" type="text" autocomplete="off" placeholder="Імʼя та прізвище автора" aria-required="true" aria-describedby="author-error" class="field min-h-[48px] w-full rounded-xl border border-zinc-700 bg-zinc-950/60 px-4 py-3 text-base text-zinc-100 placeholder-zinc-500 transition duration-200 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40">
-                        <p id="author-error" role="alert" class="mt-2 hidden text-sm text-red-400"></p>
-                    </div>
-
-                    <!-- Email + Телефон -->
-                    <div class="grid gap-6 sm:grid-cols-2">
-                        <div>
-                            <label for="email" class="mb-2 block text-sm font-medium text-zinc-200">
-                                Email <span class="font-normal text-zinc-500">(необовʼязково)</span>
-                            </label>
-                            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" placeholder="name@example.com" aria-describedby="email-error" class="field min-h-[48px] w-full rounded-xl border border-zinc-700 bg-zinc-950/60 px-4 py-3 text-base text-zinc-100 placeholder-zinc-500 transition duration-200 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40">
-                            <p id="email-error" role="alert" class="mt-2 hidden text-sm text-red-400"></p>
-                        </div>
-                        <div>
-                            <label for="phone" class="mb-2 block text-sm font-medium text-zinc-200">
-                                Телефон <span class="font-normal text-zinc-500">(необовʼязково)</span>
-                            </label>
-                            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380501234567" aria-describedby="phone-error" class="field min-h-[48px] w-full rounded-xl border border-zinc-700 bg-zinc-950/60 px-4 py-3 text-base text-zinc-100 placeholder-zinc-500 transition duration-200 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40">
-                            <p id="phone-error" role="alert" class="mt-2 hidden text-sm text-red-400"></p>
-                        </div>
-                    </div>
-
-                    <!-- Коментар / Вайб -->
-                    <div>
-                        <div class="mb-2 flex items-baseline justify-between gap-4">
-                            <label for="comment" class="text-sm font-medium text-zinc-200">
-                                Коментар / вайб <span class="font-normal text-zinc-500">(необовʼязково)</span>
-                            </label>
-                            <span id="comment-count" class="text-xs tabular-nums text-zinc-500" aria-hidden="true">0 / 500</span>
-                        </div>
-                        <textarea id="comment" name="comment" rows="4" maxlength="500" placeholder="Який настрій створює ця книга? Для якого вечора вона підійде?" aria-describedby="comment-error" class="field min-h-[120px] w-full resize-none rounded-xl border border-zinc-700 bg-zinc-950/60 px-4 py-3 text-base text-zinc-100 placeholder-zinc-500 transition duration-200 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40"></textarea>
-                        <p id="comment-error" role="alert" class="mt-2 hidden text-sm text-red-400"></p>
-                    </div>
-
-                    <!-- Згода -->
-                    <div>
-                        <label for="consent" class="flex min-h-[44px] cursor-pointer items-start gap-3 py-2">
-                            <input id="consent" name="consent" type="checkbox" aria-required="true" aria-describedby="consent-error" class="mt-0.5 h-6 w-6 shrink-0 cursor-pointer rounded-md border-zinc-600 bg-zinc-950 accent-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/60">
-                            <span class="text-sm leading-relaxed text-zinc-300">
-                                Я погоджуюсь з політикою конфіденційності <span class="text-violet-400" aria-hidden="true">*</span>
-                            </span>
-                        </label>
-                        <p id="consent-error" role="alert" class="mt-1 hidden text-sm text-red-400"></p>
-                    </div>
-
-                    <!-- Кнопка -->
-                    <button id="submitBtn" type="submit" class="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-indigo-900/40 transition duration-200 hover:from-violet-500 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:cursor-not-allowed disabled:opacity-60">
-                        <svg id="spinner" class="hidden h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" class="opacity-25"/>
-                            <path d="M4 12a8 8 0 018-8" stroke="currentColor" stroke-width="4" stroke-linecap="round" class="opacity-90"/>
-                        </svg>
-                        <span id="btnText">Надіслати дроп</span>
-                    </button>
-                </form>
-
-                <!-- SUCCESS STATE -->
-                <div id="successBanner" role="status" aria-live="polite" class="hidden rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-6 text-center opacity-0 transition-opacity duration-500">
-                    <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
-                        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-                    </div>
-                    <h2 class="text-xl font-semibold text-emerald-300">Дроп передано модераторам</h2>
-                    <p class="mt-2 text-base leading-relaxed text-emerald-100/80">
-                        Дякуємо! Ми перевіримо пропозицію і, якщо книга підійде, додамо її до каталогу.
-                    </p>
-                    <button id="resetBtn" type="button" class="mt-6 min-h-[48px] rounded-xl border border-emerald-500/50 px-6 py-3 text-base font-medium text-emerald-300 transition duration-200 hover:bg-emerald-500/10 focus:outline-none focus:ring-2 focus:ring-emerald-400">
-                        Запропонувати ще одну книгу
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ПРАВИЛА Й КОНТАКТИ -->
-        <section class="community-section" id="contacts" aria-labelledby="contacts-title">
-            <header class="community-section-header">
-                <h2 id="contacts-title" class="community-section-title">Правила й контакти</h2>
-            </header>
-            <div class="rules">
-                <div class="panel">
-                    <h3>Правила спільноти</h3>
-                    <ul class="rules-list">
-                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Без спойлерів: не розкривай фінал і ключові повороти.</span></li>
-                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Критикуй книгу, а не людей, які її люблять.</span></li>
-                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Пиши від себе: власні враження цінніші за переказ сюжету.</span></li>
-                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Не публікуй особисті дані — свої чи чужі.</span></li>
-                    </ul>
-                </div>
-                <div class="panel">
-                    <h3>Де нас знайти</h3>
-                    <p class="community-section-note">Питання, ідеї та побажання до добірки — пиши нам у соцмережі.</p>
-                    <ul class="contact-list">
-                        <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i><span lang="en">Instagram</span><i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i></a></li>
-                        <li><a href="about.html"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span>Про BookDrop</span></a></li>
-                        <li><a href="tracker.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i><span>Мій простір</span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <div class="toast-region" data-toast aria-live="polite" aria-atomic="true"></div>
-    </main>
-
-    <!-- ПІДВАЛ -->
-    <footer class="site-footer bg-zinc-100 dark:bg-[#18181B] border-t border-zinc-200 dark:border-[#3F3F46] py-12 text-sm text-zinc-600 dark:text-zinc-400 transition-colors duration-300">
-        <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 footer-container flex flex-col md:flex-row justify-between gap-8">
-            <div class="footer-brand max-w-xs space-y-2">
-                <a href="index.html" class="logo flex items-center gap-1.5 text-zinc-900 dark:text-white font-bold text-xl">
-                    <span class="font-display">BookDrop<span class="text-indigo-600 dark:text-indigo-500">.</span></span>
-                </a>
-                <p class="footer-tagline text-xs text-zinc-600 dark:text-zinc-400">Хороші історії знаходять тебе. У правильний момент.</p>
-                <small class="copyright text-zinc-500 text-xs">© 2026 BookDrop.</small>
-            </div>
-            <nav class="footer-nav" aria-label="Навігація у підвалі">
-                <ul class="flex flex-col space-y-2.5 text-sm font-medium">
-                    <li><a href="index.html" class="group inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:translate-x-1.5 py-1">Головна</a></li>
-                    <li><a href="about.html" class="group inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:translate-x-1.5 py-1">Про нас</a></li>
-                    <li><a href="tracker.html" class="group inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:translate-x-1.5 py-1">Мій простір</a></li>
-                    <li><a href="community.html" class="group inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:translate-x-1.5 py-1" aria-current="page">Спільнота</a></li>
-                </ul>
-            </nav>
-            <div class="footer-social">
-                <ul class="footer-links">
-                    <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="link-accent inline-flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i> <span lang="en">Instagram</span></a></li>
-                    <li><a href="community.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Контакти</a></li>
-                </ul>
-            </div>
-            <div class="footer-privacy">
-                <div class="privacy-box p-3.5 rounded-xl border border-zinc-300 dark:border-[#3F3F46] bg-white dark:bg-[#27272A]/70 flex items-start gap-3 transition-colors">
-                    <i class="fa-solid fa-circle-info text-indigo-500 text-sm mt-0.5" aria-hidden="true"></i>
-                    <div>
-                        <p class="font-medium text-zinc-900 dark:text-white text-xs">Дані зберігаються локально у твоєму браузері</p>
-                        <p class="text-zinc-500 dark:text-zinc-400 text-[11px]">Без реєстрації та трекінгу (localStorage)</p>
-                    </div>
-                </div>
-            </div>
+    <!-- МІЙ ПРОГРЕС -->
+    <section class="tabpanel" id="panel-progress" role="tabpanel" aria-labelledby="tab-progress" hidden>
+      <header class="section-head">
+        <div>
+          <h2 class="section-title">Мій прогрес</h2>
+          <p class="section-note">Серія, таймер і челендж рахуються з прогресу в «Моєму просторі».</p>
         </div>
-    </footer>
+        <a class="tab-link" href="tracker.html">
+          Відкрити щоденник <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </header>
 
-    <!-- СКРИПТ ВАЛІДАЦІЇ ФОРМИ -->
-    <script>
-        (() => {
-            'use strict';
-            const form = document.getElementById('dropForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const btnText = document.getElementById('btnText');
-            const spinner = document.getElementById('spinner');
-            const banner = document.getElementById('successBanner');
-            const resetBtn = document.getElementById('resetBtn');
-            const counter = document.getElementById('comment-count');
-            
-            const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-            const PHONE_RE = /^\+380\d{9}$/;
-            const MAX_COMMENT = 500;
+      <div class="progress-grid">
+        <section class="panel reveal" aria-labelledby="streak-title">
+          <h3 class="panel-title" id="streak-title">Серія читання</h3>
+          <div data-streak></div>
+        </section>
 
-            const rules = {
-                title: (v) => {
-                    v = v.trim();
-                    if (!v) return 'Вкажіть назву книги';
-                    if (v.length < 2) return 'Назва має містити щонайменше 2 символи';
-                    return '';
-                },
-                author: (v) => {
-                    v = v.trim();
-                    if (!v) return 'Вкажіть автора';
-                    if (v.length < 2) return 'Імʼя автора має містити щонайменше 2 символи';
-                    return '';
-                },
-                email: (v) => {
-                    v = v.trim();
-                    if (v && !EMAIL_RE.test(v)) return 'Введіть коректну адресу, наприклад name@example.com';
-                    return '';
-                },
-                phone: (v) => {
-                    const clean = v.replace(/[\s\-()]/g, '');
-                    if (clean && !PHONE_RE.test(clean)) return 'Формат: +380XXXXXXXXX (13 символів)';
-                    return '';
-                },
-                comment: (v) => (v.length > MAX_COMMENT ? `Максимум ${MAX_COMMENT} символів` : ''),
-                consent: (_, el) => (el.checked ? '' : 'Потрібна згода з політикою конфіденційності'),
-            };
+        <section class="panel timer-card reveal" aria-labelledby="timer-title" data-timer>
+          <h3 class="panel-title" id="timer-title">Таймер читання</h3>
+          <div class="timer-ring" data-timer-ring style="--p:0">
+            <p class="timer-display" data-timer-display role="timer" aria-live="off">25:00</p>
+          </div>
+          <div class="timer-presets" role="group" aria-label="Тривалість сесії, хвилин">
+            <button type="button" class="chip" data-timer-preset="15" aria-pressed="false">15</button>
+            <button type="button" class="chip" data-timer-preset="25" aria-pressed="true">25</button>
+            <button type="button" class="chip" data-timer-preset="45" aria-pressed="false">45</button>
+          </div>
+          <div class="btn-row timer-actions">
+            <button type="button" class="btn btn-primary" data-timer-toggle>Старт</button>
+            <button type="button" class="link-button" data-timer-reset>Скинути</button>
+          </div>
+          <p class="field-hint">Після завершення сесії день зараховується в серію.</p>
+        </section>
+      </div>
 
-            const STATES = {
-                neutral: ['border-zinc-700', 'focus:border-violet-500', 'focus:ring-violet-500/40'],
-                error:   ['border-red-500', 'focus:border-red-500', 'focus:ring-red-500/40'],
-                success: ['border-emerald-500', 'focus:border-emerald-500', 'focus:ring-emerald-500/40'],
-            };
-            const ALL_STATE_CLASSES = Object.values(STATES).flat();
-            const touched = new Set();
-            let isSubmitting = false;
+      <section class="panel progress-challenge reveal" aria-labelledby="challenge-title">
+        <h3 class="panel-title" id="challenge-title">Читацький челендж 2026</h3>
+        <p class="section-note">Книга зараховується, коли прочитано всі сторінки.</p>
+        <div data-challenge></div>
+      </section>
 
-            function setFieldState(el, state) {
-                if (el.type === 'checkbox') return;
-                el.classList.remove(...ALL_STATE_CLASSES);
-                el.classList.add(...STATES[state]);
-            }
+      <div class="badges-header">
+        <h3 class="section-title badges-title">Досягнення</h3>
+        <p class="posts-count" data-badges-summary aria-live="polite"></p>
+      </div>
+      <ul class="badges-grid" data-badges aria-label="Досягнення"></ul>
 
-            function validate(name) {
-                const el = form.elements[name];
-                const errBox = document.getElementById(`${name}-error`);
-                const message = rules[name](el.value, el);
-                
-                if (message) {
-                    errBox.textContent = message;
-                    errBox.classList.remove('hidden');
-                    el.setAttribute('aria-invalid', 'true');
-                    setFieldState(el, 'error');
-                } else {
-                    errBox.textContent = '';
-                    errBox.classList.add('hidden');
-                    el.removeAttribute('aria-invalid');
-                    setFieldState(el, el.value.trim() && el.type !== 'checkbox' ? 'success' : 'neutral');
-                }
-                return !message;
-            }
+      <div class="panel year-card">
+        <div class="year-preview">
+          <canvas data-year-canvas width="1080" height="1350" role="img" aria-label="Картка «Мій рік у книгах» з вашою статистикою"></canvas>
+        </div>
+        <div class="year-copy">
+          <h3 class="panel-title">Мій рік у книгах</h3>
+          <p class="section-note">Картка зі статистикою читання й обкладинками вашої полиці. Збережи її картинкою та поділись в Instagram.</p>
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" data-year-download>
+              <i class="fa-solid fa-download" aria-hidden="true"></i> Завантажити PNG
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            function hasVisibleError(name) {
-                return !document.getElementById(`${name}-error`).classList.contains('hidden');
-            }
+    <!-- ГОЛОСУВАННЯ -->
+    <section class="tabpanel" id="panel-vote" role="tabpanel" aria-labelledby="tab-vote" hidden>
+      <header class="section-head">
+        <div>
+          <h2 class="section-title">Книга місяця: <span data-vote-month>цього місяця</span></h2>
+          <p class="section-note">Чотири кандидати з різних жанрів. Обери свого фаворита.</p>
+        </div>
+      </header>
+      <div data-vote></div>
+    </section>
 
-            Object.keys(rules).forEach((name) => {
-                const el = form.elements[name];
-                el.addEventListener('blur', () => {
-                    touched.add(name);
-                    validate(name);
-                });
-                el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', () => {
-                    if (name === 'phone') {
-                        el.value = el.value.replace(/[^\d+\s\-()]/g, '');
-                    }
-                    if (name === 'comment') counter.textContent = `${el.value.length} / ${MAX_COMMENT}`;
-                    if (touched.has(name) || hasVisibleError(name) || el.type === 'checkbox') validate(name);
-                });
-            });
+    <!-- КЛУБИ -->
+    <section class="tabpanel" id="panel-clubs" role="tabpanel" aria-labelledby="tab-clubs" hidden>
+      <header class="section-head">
+        <div>
+          <h2 class="section-title">Книжкові клуби</h2>
+          <p class="section-note">Ілюстративні клуби за жанрами. Вступ зберігається лише в цьому браузері.</p>
+        </div>
+      </header>
 
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                if (isSubmitting) return;
+      <ul class="clubs-grid" data-clubs aria-label="Книжкові клуби"></ul>
 
-                let firstInvalid = null;
-                Object.keys(rules).forEach((name) => {
-                    touched.add(name);
-                    if (!validate(name) && !firstInvalid) firstInvalid = form.elements[name];
-                });
+      <h3 class="subsection-title" id="meetings-title">Найближчі зустрічі</h3>
+      <ul class="meetings-grid" data-meetings aria-labelledby="meetings-title"></ul>
+    </section>
 
-                if (firstInvalid) {
-                    firstInvalid.focus();
-                    return;
-                }
+    <!-- ОБГОВОРЕННЯ -->
+    <section class="tabpanel" id="panel-discussions" role="tabpanel" aria-labelledby="tab-discussions" hidden>
+      <header class="section-head">
+        <div>
+          <h2 class="section-title">Обговорення й відгуки</h2>
+          <p class="section-note">Поділись враженнями про книгу. Нові відгуки й відповіді видно лише тобі, бо дані не залишають браузер.</p>
+        </div>
+      </header>
 
-                setLoading(true);
-                try {
-                    await new Promise((r) => setTimeout(r, 1200));
-                    form.classList.add('opacity-0');
-                    setTimeout(() => {
-                        form.classList.add('hidden');
-                        banner.classList.remove('hidden');
-                        requestAnimationFrame(() => banner.classList.remove('opacity-0'));
-                        resetBtn.focus();
-                    }, 300);
-                } catch (err) {
-                    const box = document.getElementById('consent-error');
-                    box.textContent = 'Не вдалося надіслати. Спробуйте ще раз.';
-                    box.classList.remove('hidden');
-                } finally {
-                    setLoading(false);
-                }
-            });
+      <div class="discussion">
+        <div>
+          <div class="filters" role="search" aria-label="Фільтри відгуків">
+            <div class="field">
+              <label for="post-search">Пошук</label>
+              <input type="text" id="post-search" placeholder="Книга, автор або слово" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="post-category">Жанр</label>
+              <select id="post-category"><option value="all">Усі жанри</option></select>
+            </div>
+            <div class="field">
+              <label for="post-sort">Сортування</label>
+              <select id="post-sort"><option value="new">Спочатку нові</option><option value="popular">Популярні</option></select>
+            </div>
+            <label class="filter-check"><input type="checkbox" id="post-mine"> Лише мої</label>
+          </div>
 
-            function setLoading(state) {
-                isSubmitting = state;
-                submitBtn.disabled = state;
-                submitBtn.setAttribute('aria-busy', String(state));
-                spinner.classList.toggle('hidden', !state);
-                btnText.textContent = state ? 'Надсилаємо…' : 'Надіслати дроп';
-            }
+          <div class="posts-toolbar">
+            <h3 class="visually-hidden">Стрічка відгуків</h3>
+            <p class="posts-count" data-posts-count aria-live="polite"></p>
+            <button type="button" class="link-button" data-filters-reset>Скинути фільтри</button>
+          </div>
 
-            resetBtn.addEventListener('click', () => {
-                form.reset();
-                touched.clear();
-                counter.textContent = `0 / ${MAX_COMMENT}`;
-                Object.keys(rules).forEach((name) => {
-                    const el = form.elements[name];
-                    document.getElementById(`${name}-error`).classList.add('hidden');
-                    el.removeAttribute('aria-invalid');
-                    setFieldState(el, 'neutral');
-                });
-                banner.classList.add('opacity-0');
-                setTimeout(() => {
-                    banner.classList.add('hidden');
-                    form.classList.remove('hidden');
-                    requestAnimationFrame(() => form.classList.remove('opacity-0'));
-                    form.elements.title.focus();
-                }, 300);
-            });
-        })();
-    </script>
+          <ul class="posts-list" data-posts aria-label="Стрічка відгуків"></ul>
+        </div>
+
+        <form class="panel review-form" data-review-form novalidate aria-labelledby="review-form-title">
+          <h3 id="review-form-title">Написати відгук</h3>
+          <div class="field">
+            <label for="review-name">Ім’я (необов’язково)</label>
+            <input type="text" id="review-name" maxlength="40" autocomplete="nickname" placeholder="Напр., Олена">
+          </div>
+          <div class="field">
+            <label for="review-book">Книга</label>
+            <select id="review-book" aria-describedby="review-book-error"></select>
+            <p class="field-error" id="review-book-error" data-error="book" aria-live="polite"></p>
+          </div>
+          <fieldset class="field rating-group">
+            <legend>Оцінка</legend>
+            <div class="rating-options">
+              <input type="radio" name="rating" id="rating-1" value="1"><label for="rating-1" aria-label="1 із 5">1</label>
+              <input type="radio" name="rating" id="rating-2" value="2"><label for="rating-2" aria-label="2 із 5">2</label>
+              <input type="radio" name="rating" id="rating-3" value="3"><label for="rating-3" aria-label="3 із 5">3</label>
+              <input type="radio" name="rating" id="rating-4" value="4"><label for="rating-4" aria-label="4 із 5">4</label>
+              <input type="radio" name="rating" id="rating-5" value="5"><label for="rating-5" aria-label="5 із 5">5</label>
+            </div>
+            <p class="field-error" data-error="rating" aria-live="polite"></p>
+          </fieldset>
+          <div class="field">
+            <label for="review-text">Твій відгук</label>
+            <textarea id="review-text" maxlength="700" placeholder="Що тебе зачепило? Без спойлерів!" aria-describedby="review-text-error review-counter"></textarea>
+            <p class="field-hint" id="review-counter" data-review-counter>0 / 600</p>
+            <p class="field-error" id="review-text-error" data-error="text" aria-live="polite"></p>
+          </div>
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary">Опублікувати</button>
+          </div>
+          <p class="form-feedback" data-review-feedback aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ПРОПОЗИЦІЇ ТА ПРАВИЛА -->
+    <section class="tabpanel" id="panel-more" role="tabpanel" aria-labelledby="tab-more" hidden>
+      <header class="section-head">
+        <div>
+          <h2 class="section-title">Пропозиції та правила</h2>
+          <p class="section-note">Каталог, правила спільноти й контакти в одному місці.</p>
+        </div>
+      </header>
+
+      <div class="more-stack">
+        <section id="suggest-form" aria-labelledby="suggest-form-title">
+          <h3 class="subsection-title" id="suggest-form-title" style="margin-top:0">Запропонувати тайтл у каталог</h3>
+          <p class="section-note">Маєш улюблену книгу, якої ще немає на BookDrop? Поділися з нами: модератори перевірять пропозицію.</p>
+
+          <div class="mx-auto mt-4 w-full max-w-2xl rounded-3xl border border-zinc-200 bg-white p-6 shadow-2xl shadow-indigo-950/10 dark:border-zinc-800 dark:bg-zinc-900/60 dark:shadow-indigo-950/40 sm:p-10">
+            <form id="dropForm" novalidate method="post" onsubmit="return false" aria-labelledby="suggest-form-title"
+              class="grid grid-cols-1 gap-x-5 gap-y-6 transition-opacity duration-300 md:grid-cols-2">
+
+              <!-- Назва книги -->
+              <div>
+                <label for="drop-title" class="mb-2 block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                  Назва книги <span class="text-violet-600 dark:text-violet-400" aria-hidden="true">*</span>
+                </label>
+                <div class="relative">
+                  <input id="drop-title" name="title" type="text" autocomplete="off" required aria-required="true" maxlength="150" autocapitalize="sentences" enterkeyhint="next"
+                    placeholder="Наприклад, «Тіні забутих предків»" aria-describedby="drop-title-error"
+                    class="scroll-mt-28 min-h-[48px] peer w-full rounded-xl border border-zinc-300 bg-white py-3 pl-4 pr-11 text-base text-zinc-900 placeholder-zinc-500 transition duration-200 motion-reduce:transition-none focus:border-violet-500 dark:focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40 dark:border-zinc-700 dark:bg-zinc-950/60 dark:text-zinc-100 dark:placeholder-zinc-400 aria-[invalid=true]:border-red-500 dark:aria-[invalid=true]:border-red-500 aria-[invalid=true]:focus:border-red-500 dark:aria-[invalid=true]:focus:border-red-500 aria-[invalid=true]:focus:ring-red-500/40 data-[valid=true]:border-emerald-500 dark:data-[valid=true]:border-emerald-500 data-[valid=true]:focus:border-emerald-500 dark:data-[valid=true]:focus:border-emerald-500 data-[valid=true]:focus:ring-emerald-500/40">
+                  <svg class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 hidden h-5 w-5 text-emerald-500 dark:text-emerald-400 peer-data-[valid=true]:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <p id="drop-title-error" role="alert" class="mt-2 hidden [&:not(.hidden)]:flex items-start gap-1.5 text-sm text-red-600 dark:text-red-400"><span aria-hidden="true" class="shrink-0">⚠</span><span data-error-text></span></p>
+              </div>
+
+              <!-- Автор -->
+              <div>
+                <label for="drop-author" class="mb-2 block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                  Автор <span class="text-violet-600 dark:text-violet-400" aria-hidden="true">*</span>
+                </label>
+                <div class="relative">
+                  <input id="drop-author" name="author" type="text" autocomplete="off" required aria-required="true" maxlength="100" autocapitalize="words" enterkeyhint="next"
+                    placeholder="Імʼя та прізвище автора" aria-describedby="drop-author-error"
+                    class="scroll-mt-28 min-h-[48px] peer w-full rounded-xl border border-zinc-300 bg-white py-3 pl-4 pr-11 text-base text-zinc-900 placeholder-zinc-500 transition duration-200 motion-reduce:transition-none focus:border-violet-500 dark:focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40 dark:border-zinc-700 dark:bg-zinc-950/60 dark:text-zinc-100 dark:placeholder-zinc-400 aria-[invalid=true]:border-red-500 dark:aria-[invalid=true]:border-red-500 aria-[invalid=true]:focus:border-red-500 dark:aria-[invalid=true]:focus:border-red-500 aria-[invalid=true]:focus:ring-red-500/40 data-[valid=true]:border-emerald-500 dark:data-[valid=true]:border-emerald-500 data-[valid=true]:focus:border-emerald-500 dark:data-[valid=true]:focus:border-emerald-500 data-[valid=true]:focus:ring-emerald-500/40">
+                  <svg class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 hidden h-5 w-5 text-emerald-500 dark:text-emerald-400 peer-data-[valid=true]:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <p id="drop-author-error" role="alert" class="mt-2 hidden [&:not(.hidden)]:flex items-start gap-1.5 text-sm text-red-600 dark:text-red-400"><span aria-hidden="true" class="shrink-0">⚠</span><span data-error-text></span></p>
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label for="drop-email" class="mb-2 block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                  Email <span class="font-normal text-zinc-500 dark:text-zinc-400">(необовʼязково)</span>
+                </label>
+                <div class="relative">
+                  <input id="drop-email" name="email" type="email" inputmode="email" autocomplete="email"
+                    autocapitalize="none" spellcheck="false" maxlength="254" enterkeyhint="next" placeholder="name@example.com" aria-describedby="drop-email-error"
+                    class="scroll-mt-28 min-h-[48px] peer w-full rounded-xl border border-zinc-300 bg-white py-3 pl-4 pr-11 text-base text-zinc-900 placeholder-zinc-500 transition duration-200 motion-reduce:transition-none focus:border-violet-500 dark:focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40 dark:border-zinc-700 dark:bg-zinc-950/60 dark:text-zinc-100 dark:placeholder-zinc-400 aria-[invalid=true]:border-red-500 dark:aria-[invalid=true]:border-red-500 aria-[invalid=true]:focus:border-red-500 dark:aria-[invalid=true]:focus:border-red-500 aria-[invalid=true]:focus:ring-red-500/40 data-[valid=true]:border-emerald-500 dark:data-[valid=true]:border-emerald-500 data-[valid=true]:focus:border-emerald-500 dark:data-[valid=true]:focus:border-emerald-500 data-[valid=true]:focus:ring-emerald-500/40">
+                  <svg class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 hidden h-5 w-5 text-emerald-500 dark:text-emerald-400 peer-data-[valid=true]:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <p id="drop-email-error" role="alert" class="mt-2 hidden [&:not(.hidden)]:flex items-start gap-1.5 text-sm text-red-600 dark:text-red-400"><span aria-hidden="true" class="shrink-0">⚠</span><span data-error-text></span></p>
+              </div>
+
+              <!-- Телефон -->
+              <div>
+                <label for="drop-phone" class="mb-2 block text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                  Телефон <span class="font-normal text-zinc-500 dark:text-zinc-400">(необовʼязково)</span>
+                </label>
+                <div class="relative">
+                  <input id="drop-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" enterkeyhint="next"
+                    placeholder="+380501234567" aria-describedby="drop-phone-error"
+                    class="scroll-mt-28 min-h-[48px] peer w-full rounded-xl border border-zinc-300 bg-white py-3 pl-4 pr-11 text-base text-zinc-900 placeholder-zinc-500 transition duration-200 motion-reduce:transition-none focus:border-violet-500 dark:focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40 dark:border-zinc-700 dark:bg-zinc-950/60 dark:text-zinc-100 dark:placeholder-zinc-400 aria-[invalid=true]:border-red-500 dark:aria-[invalid=true]:border-red-500 aria-[invalid=true]:focus:border-red-500 dark:aria-[invalid=true]:focus:border-red-500 aria-[invalid=true]:focus:ring-red-500/40 data-[valid=true]:border-emerald-500 dark:data-[valid=true]:border-emerald-500 data-[valid=true]:focus:border-emerald-500 dark:data-[valid=true]:focus:border-emerald-500 data-[valid=true]:focus:ring-emerald-500/40">
+                  <svg class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 hidden h-5 w-5 text-emerald-500 dark:text-emerald-400 peer-data-[valid=true]:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <p id="drop-phone-error" role="alert" class="mt-2 hidden [&:not(.hidden)]:flex items-start gap-1.5 text-sm text-red-600 dark:text-red-400"><span aria-hidden="true" class="shrink-0">⚠</span><span data-error-text></span></p>
+              </div>
+
+              <!-- Коментар / вайб -->
+              <div class="md:col-span-2">
+                <div class="mb-2 flex items-baseline justify-between gap-4">
+                  <label for="drop-comment" class="text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                    Коментар / вайб <span class="font-normal text-zinc-500 dark:text-zinc-400">(необовʼязково)</span>
+                  </label>
+                  <span id="drop-comment-count" class="text-xs tabular-nums text-zinc-500 dark:text-zinc-400" aria-hidden="true">0 / 500</span>
+                  <span id="drop-comment-status" class="sr-only" aria-live="polite"></span>
+                </div>
+                <div class="relative">
+                  <textarea id="drop-comment" name="comment" rows="4" maxlength="500"
+                    placeholder="Який настрій створює ця книга? Для якого вечора вона підійде?" aria-describedby="drop-comment-error"
+                    class="scroll-mt-28 min-h-[120px] resize-none leading-relaxed peer w-full rounded-xl border border-zinc-300 bg-white py-3 pl-4 pr-11 text-base text-zinc-900 placeholder-zinc-500 transition duration-200 motion-reduce:transition-none focus:border-violet-500 dark:focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/40 dark:border-zinc-700 dark:bg-zinc-950/60 dark:text-zinc-100 dark:placeholder-zinc-400 aria-[invalid=true]:border-red-500 dark:aria-[invalid=true]:border-red-500 aria-[invalid=true]:focus:border-red-500 dark:aria-[invalid=true]:focus:border-red-500 aria-[invalid=true]:focus:ring-red-500/40 data-[valid=true]:border-emerald-500 dark:data-[valid=true]:border-emerald-500 data-[valid=true]:focus:border-emerald-500 dark:data-[valid=true]:focus:border-emerald-500 data-[valid=true]:focus:ring-emerald-500/40"></textarea>
+                  <svg class="pointer-events-none absolute right-4 top-3.5 hidden h-5 w-5 text-emerald-500 dark:text-emerald-400 peer-data-[valid=true]:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <p id="drop-comment-error" role="alert" class="mt-2 hidden [&:not(.hidden)]:flex items-start gap-1.5 text-sm text-red-600 dark:text-red-400"><span aria-hidden="true" class="shrink-0">⚠</span><span data-error-text></span></p>
+              </div>
+
+              <!-- Згода -->
+              <div class="md:col-span-2">
+                <label for="drop-consent" class="flex min-h-[44px] cursor-pointer items-start gap-3 py-2">
+                  <input id="drop-consent" name="consent" type="checkbox" required aria-required="true"
+                    aria-describedby="drop-consent-error"
+                    class="scroll-mt-28 mt-0.5 h-6 w-6 shrink-0 cursor-pointer rounded-md accent-violet-500 transition duration-200 motion-reduce:transition-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500 aria-[invalid=true]:outline aria-[invalid=true]:outline-2 aria-[invalid=true]:outline-offset-2 aria-[invalid=true]:outline-red-500 aria-[invalid=true]:focus-visible:outline-red-500 data-[valid=true]:accent-emerald-500">
+                  <span class="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
+                    Я погоджуюсь з
+                    <a href="#privacy" class="rounded text-violet-600 underline underline-offset-2 hover:text-violet-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 dark:text-violet-400 dark:hover:text-violet-300">політикою конфіденційності</a>
+                    <span class="text-violet-600 dark:text-violet-400" aria-hidden="true">*</span>
+                  </span>
+                </label>
+                <p id="drop-consent-error" role="alert" class="mt-1 hidden [&:not(.hidden)]:flex items-start gap-1.5 text-sm text-red-600 dark:text-red-400"><span aria-hidden="true" class="shrink-0">⚠</span><span data-error-text></span></p>
+              </div>
+
+              <!-- Помилка форми (збереження / мережа) -->
+              <p id="dropFormError" role="alert" class="md:col-span-2 hidden [&:not(.hidden)]:flex items-start gap-1.5 text-sm text-red-600 dark:text-red-400"><span aria-hidden="true" class="shrink-0">⚠</span><span data-error-text></span></p>
+
+              <!-- Кнопка -->
+              <div class="md:col-span-2">
+                <button id="dropSubmit" type="submit"
+                  class="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-indigo-900/30 transition duration-200 hover:from-violet-500 hover:to-indigo-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 dark:focus-visible:ring-offset-zinc-900">
+                  <svg id="dropSpinner" class="hidden h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" class="opacity-25"/>
+                    <path d="M4 12a8 8 0 018-8" stroke="currentColor" stroke-width="4" stroke-linecap="round" class="opacity-90"/>
+                  </svg>
+                  <span id="dropBtnText">Надіслати дроп</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Політика конфіденційності (ціль посилання #privacy) -->
+          <div class="panel mx-auto mt-6 w-full max-w-2xl" id="privacy" tabindex="-1">
+            <h3 class="panel-title">Політика конфіденційності</h3>
+            <p class="section-note">
+              Форма «Запропонувати тайтл» збирає назву книги й автора. Email і телефон необовʼязкові:
+              ми використовуємо їх лише щоб уточнити деталі вашої пропозиції. Дані не передаються третім особам
+              і не використовуються для реклами чи трекінгу. У цій версії сайту пропозиція зберігається
+              лише в localStorage вашого браузера.
+            </p>
+          </div>
+        </section>
+
+        <section id="contacts" aria-labelledby="contacts-title">
+          <h3 class="subsection-title" id="contacts-title">Правила й контакти</h3>
+          <div class="rules-strip">
+            <div class="panel">
+              <h3 class="panel-title">Правила спільноти</h3>
+              <ul class="rules-list">
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Без спойлерів: не розкривай фінал і ключові повороти.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Критикуй книгу, а не людей, які її люблять.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Пиши від себе: власні враження цінніші за переказ сюжету.</span></li>
+                <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Не публікуй особисті дані — свої чи чужі.</span></li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3 class="panel-title">Де нас знайти</h3>
+              <p class="section-note">Питання, ідеї та побажання до добірки — пиши нам у соцмережі.</p>
+              <ul class="contact-list">
+                <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i><span lang="en">Instagram</span><i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i></a></li>
+                <li><a href="about.html"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span>Про BookDrop</span></a></li>
+                <li><a href="tracker.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i><span>Мій простір</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <div class="toast-region" data-toast aria-live="polite" aria-atomic="true"></div>
+  </main>
+
+  <!-- ПІДВАЛ -->
+  <footer class="site-footer bg-zinc-100 dark:bg-[#18181B] border-t border-zinc-200 dark:border-[#3F3F46] py-12 text-sm text-zinc-600 dark:text-zinc-400 transition-colors duration-300">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 footer-container flex flex-col md:flex-row justify-between gap-8">
+      <div class="footer-brand max-w-xs space-y-2">
+        <a href="index.html" class="logo flex items-center gap-1.5 text-zinc-900 dark:text-white font-bold text-xl">
+          <span class="font-display">BookDrop<span class="text-indigo-600 dark:text-indigo-500">.</span></span>
+        </a>
+        <p class="footer-tagline text-xs text-zinc-600 dark:text-zinc-400">Хороші історії знаходять тебе. У правильний момент.</p>
+        <small class="copyright text-zinc-500 text-xs">© 2026 BookDrop.</small>
+      </div>
+      <nav class="footer-nav" aria-label="Навігація у підвалі">
+        <ul class="flex flex-col space-y-2.5 text-sm font-medium">
+          <li><a href="index.html" class="group inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:translate-x-1.5 py-1">Головна</a></li>
+          <li><a href="about.html" class="group inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:translate-x-1.5 py-1">Про нас</a></li>
+          <li><a href="tracker.html" class="group inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:translate-x-1.5 py-1">Мій простір</a></li>
+          <li><a href="community.html" class="group inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all duration-200 hover:translate-x-1.5 py-1" aria-current="page">Спільнота</a></li>
+        </ul>
+      </nav>
+      <div class="footer-social">
+        <ul class="footer-links">
+          <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="link-accent inline-flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i> <span lang="en">Instagram</span></a></li>
+          <li><a href="community.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Контакти</a></li>
+        </ul>
+      </div>
+      <div class="footer-privacy">
+        <div class="privacy-box p-3.5 rounded-xl border border-zinc-300 dark:border-[#3F3F46] bg-white dark:bg-[#27272A]/70 flex items-start gap-3 transition-colors">
+          <i class="fa-solid fa-circle-info text-indigo-500 text-sm mt-0.5" aria-hidden="true"></i>
+          <div>
+            <p class="font-medium text-zinc-900 dark:text-white text-xs">Дані зберігаються локально у твоєму браузері</p>
+            <p class="text-zinc-500 dark:text-zinc-400 text-[11px]">Без реєстрації та трекінгу (localStorage)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- МОДАЛЬНЕ ВІКНО УСПІШНОГО НАДСИЛАННЯ -->
+  <div id="successModal" class="fixed inset-0 z-[100] hidden overflow-y-auto p-4"
+       role="dialog" aria-modal="true"
+       aria-labelledby="successModalTitle" aria-describedby="successModalDesc">
+    <div data-modal-overlay class="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm" aria-hidden="true"></div>
+
+    <div class="relative m-auto w-full max-w-md rounded-3xl border border-zinc-800 bg-zinc-900 p-6 text-center shadow-2xl sm:p-8">
+      <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-violet-500/15 text-violet-300" aria-hidden="true">
+        <i class="fa-solid fa-check text-2xl"></i>
+      </div>
+      <h2 id="successModalTitle" class="text-2xl font-semibold tracking-tight text-zinc-50">Дякуємо!</h2>
+      <p id="successModalDesc" class="mt-2 text-base leading-relaxed text-zinc-400">
+        Пропозицію надіслано модераторам. Ми перевіримо її й, якщо книга підійде, додамо до каталогу.
+      </p>
+      <button type="button" data-modal-close
+        class="mt-6 inline-flex h-12 w-full items-center justify-center rounded-xl bg-violet-500 px-6 text-base font-medium text-white transition-colors hover:bg-violet-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900">
+        Закрити
+      </button>
+    </div>
+  </div>
 </body>
 </html>

@@ -67,11 +67,23 @@
     })();
   </script>
 
-  <!-- 4. Нативні стилі та скрипти (порядок важливий: books.js перед app.js) -->
+  <!-- 4. [ЛР №10] CDN-стилі плагінів: Swiper v11 та Fancybox v5 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+
+  <!-- 5. Нативні стилі -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- 6. [ЛР №10] CDN-скрипти плагінів (defer зберігає порядок виконання) -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+
+  <!-- 7. Нативні скрипти (порядок важливий: books.js перед app.js, plugins.js останнім) -->
   <script src="js/books.js" defer></script>
   <script src="js/store.js" defer></script>
   <script src="js/app.js" defer></script>
+  <script src="js/plugins.js" defer></script>
 </head>
 <body class="bg-zinc-50 text-zinc-900 dark:bg-[#121212] dark:text-[#F9FAFB] font-sans antialiased transition-colors duration-300 selection:bg-indigo-600 selection:text-white">
 
@@ -85,7 +97,7 @@
        ======================================================================== -->
   <header class="site-header sticky top-0 z-50 w-full backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-[72px] flex items-center justify-between">
-      
+
       <!-- Логотип BookDrop. -->
       <a href="index.html" class="logo flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded-md py-1 min-h-[44px]" aria-label="BookDrop. — на головну сторінку">
         <svg class="logo-b-icon w-7 h-6" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -166,18 +178,18 @@
        ОСНОВНИЙ ВМІСТ СТОРІНКИ (MAIN)
        ======================================================================== -->
   <main id="main-content" tabindex="-1">
-    
+
     <!-- 1. СЕКЦІЯ: HERO З ВІДЕО ТА РЕЗЕРВНИМ ПОСТЕРОМ -->
     <section class="hero-section relative overflow-hidden" aria-labelledby="hero-title">
-      
+
       <!-- Фонове відео: autoplay, muted, loop, playsinline обов'язкові для роботи -->
       <div class="hero-video-bg absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-        <video 
-          class="w-full h-full object-cover object-right" 
-          autoplay 
-          muted 
-          loop 
-          playsinline 
+        <video
+          class="w-full h-full object-cover object-right"
+          autoplay
+          muted
+          loop
+          playsinline
           preload="auto"
           poster="assets/images/hero_bg.png">
           <source src="assets/images/hero-animated.mp4" type="video/mp4">
@@ -189,9 +201,14 @@
       <div class="container hero-container relative z-10">
         <div class="hero-content">
           <span class="badge-tag"><span aria-hidden="true">#</span>DropEverything</span>
+
+          <!-- [ЛР №10] Typed.js: sr-only містить повний заголовок для скрінрідерів -->
           <h1 id="hero-title" class="hero-title">
-            Знайди книгу під свій вайб за 10 секунд.
+            Знайди книгу під свій настрій:
+            <span class="sr-only">психологічний трилер, затишний роман або містика.</span>
+            <span id="typed-text" aria-hidden="true">психологічний трилер</span>
           </h1>
+
           <p class="hero-subtitle">
             Персоналізована добірка з 2–4 книг замість тисяч однотипних позицій. Пошук за атмосферою, жанром, напругою та емоційним запитом.
           </p>
@@ -392,32 +409,145 @@
       </ul>
     </section>
 
-   <!-- 4. СЕКЦІЯ: РЕКОМЕНДАЦІЇ (ДИНАМІЧНИЙ ДРОП) — прихована на старті -->
-<section class="py-10 sm:py-14 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="books" style="display: none;" aria-labelledby="books-title">
-  <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-zinc-200 dark:border-[#27272A] pb-6">
-    <div>
-      <span class="inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase text-indigo-600 dark:text-indigo-400 mb-2">
-        <span aria-hidden="true">#</span>ТВІЙ НАСТУПНИЙ ДРОП
-      </span>
-      <h2 id="books-title" class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
-        Історії для твого сьогодні
-      </h2>
-      <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1">
-        Ось твій персональний дроп під обраний вайб, жанр і напругу
-      </p>
-    </div>
-    <a href="tracker.html" class="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline py-1">
-      Усі добірки <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
-    </a>
-  </div>
-  <!-- Контейнер для карток -->
-  <ul id="recommendations-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    <!-- Генерується через JS після квізу -->
-  </ul>
-</section>
+    <!-- 4. СЕКЦІЯ: РЕКОМЕНДАЦІЇ (ДИНАМІЧНИЙ ДРОП) — прихована на старті -->
+    <section class="py-10 sm:py-14 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="books" style="display: none;" aria-labelledby="books-title">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-zinc-200 dark:border-[#27272A] pb-6">
+        <div>
+          <span class="inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase text-indigo-600 dark:text-indigo-400 mb-2">
+            <span aria-hidden="true">#</span>ТВІЙ НАСТУПНИЙ ДРОП
+          </span>
+          <h2 id="books-title" class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
+            Історії для твого сьогодні
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1">
+            Ось твій персональний дроп під обраний вайб, жанр і напругу
+          </p>
+        </div>
+        <a href="tracker.html" class="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline py-1">
+          Усі добірки <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+        </a>
+      </div>
+      <!-- Контейнер для карток -->
+      <ul id="recommendations-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Генерується через JS після квізу -->
+      </ul>
+    </section>
 
-    <!-- 5. СЕКЦІЯ: ВІДГУКИ ЧИТАЧІВ -->
-    <section class="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="testimonials-title">
+    <!-- 4.1 СЕКЦІЯ: ПОПУЛЯРНІ БЕСТСЕЛЕРИ ТИЖНЯ (Swiper.js + Fancybox) -->
+    <section class="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="bestsellers" aria-labelledby="bestsellers-title">
+      <div class="mb-10 max-w-2xl">
+        <span class="inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase text-indigo-600 dark:text-indigo-400 mb-2">
+          <span aria-hidden="true">#</span>ПІДБІРКИ ЗА НАСТРОЄМ
+        </span>
+        <h2 id="bestsellers-title" class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
+          Популярні бестселери тижня
+        </h2>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">
+          Гортай стрілками або свайпом. Натисни на обкладинку, щоб відкрити її на весь екран і змінити масштаб. Добірка ілюстративна.
+        </p>
+      </div>
+
+      <div class="swiper books-swiper" aria-label="Слайдер бестселерів тижня">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <article class="book-card">
+              <a class="book-cover" href="assets/covers/uve.jpg" data-fancybox="bookdrop-covers" data-type="image" data-caption="Чоловік на ім’я Уве — Фредрік Бакман · Затишок & Кава" aria-label="Відкрити обкладинку «Чоловік на ім’я Уве» на весь екран">
+                <img src="assets/covers/uve.jpg" alt="Обкладинка книги «Чоловік на ім’я Уве»" width="400" height="600" loading="lazy">
+                <span class="book-rank" aria-hidden="true">#1</span>
+              </a>
+              <div class="book-info">
+                <span class="book-mood">Затишок & Кава</span>
+                <h3 class="book-title">Чоловік на ім’я Уве</h3>
+                <p class="book-author">Фредрік Бакман</p>
+                <p class="book-tension"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Напруга: 2 із 10 · Роман</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="swiper-slide">
+            <article class="book-card">
+              <a class="book-cover" href="assets/covers/silent-patient.webp" data-fancybox="bookdrop-covers" data-type="image" data-caption="Тиха пацієнтка — Алекс Михаелідес · Психологічний трилер" aria-label="Відкрити обкладинку «Тиха пацієнтка» на весь екран">
+                <img src="assets/covers/silent-patient.webp" alt="Обкладинка книги «Тиха пацієнтка»" width="400" height="600" loading="lazy">
+                <span class="book-rank" aria-hidden="true">#2</span>
+              </a>
+              <div class="book-info">
+                <span class="book-mood">Психологічний трилер</span>
+                <h3 class="book-title">Тиха пацієнтка</h3>
+                <p class="book-author">Алекс Михаелідес</p>
+                <p class="book-tension"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Напруга: 9 із 10 · Трилер</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="swiper-slide">
+            <article class="book-card">
+              <a class="book-cover" href="assets/covers/wind-in-the-willows.webp" data-fancybox="bookdrop-covers" data-type="image" data-caption="Тінь вітру — Карлос Руїс Сафон · Містика" aria-label="Відкрити обкладинку «Тінь вітру» на весь екран">
+                <img src="assets/covers/wind-in-the-willows.webp" alt="Обкладинка книги «Тінь вітру»" width="400" height="600" loading="lazy">
+                <span class="book-rank" aria-hidden="true">#3</span>
+              </a>
+              <div class="book-info">
+                <span class="book-mood">Містика</span>
+                <h3 class="book-title">Тінь вітру</h3>
+                <p class="book-author">Карлос Руїс Сафон</p>
+                <p class="book-tension"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Напруга: 7 із 10 · Містика</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="swiper-slide">
+            <article class="book-card">
+              <a class="book-cover" href="assets/covers/dune.webp" data-fancybox="bookdrop-covers" data-type="image" data-caption="Дюна — Френк Герберт · Інтелектуальний виклик" aria-label="Відкрити обкладинку «Дюна» на весь екран">
+                <img src="assets/covers/dune.webp" alt="Обкладинка книги «Дюна»" width="400" height="600" loading="lazy">
+                <span class="book-rank" aria-hidden="true">#4</span>
+              </a>
+              <div class="book-info">
+                <span class="book-mood">Інтелектуальний виклик</span>
+                <h3 class="book-title">Дюна</h3>
+                <p class="book-author">Френк Герберт</p>
+                <p class="book-tension"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Напруга: 6 із 10 · Фантастика</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="swiper-slide">
+            <article class="book-card">
+              <a class="book-cover" href="assets/covers/pride-and-prejudice.webp" data-fancybox="bookdrop-covers" data-type="image" data-caption="Гордість і упередження — Джейн Остін · Легкий романс" aria-label="Відкрити обкладинку «Гордість і упередження» на весь екран">
+                <img src="assets/covers/pride-and-prejudice.webp" alt="Обкладинка книги «Гордість і упередження»" width="400" height="600" loading="lazy">
+                <span class="book-rank" aria-hidden="true">#5</span>
+              </a>
+              <div class="book-info">
+                <span class="book-mood">Легкий романс</span>
+                <h3 class="book-title">Гордість і упередження</h3>
+                <p class="book-author">Джейн Остін</p>
+                <p class="book-tension"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Напруга: 2 із 10 · Романс</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="swiper-slide">
+            <article class="book-card">
+              <a class="book-cover" href="assets/covers/the-shining.webp" data-fancybox="bookdrop-covers" data-type="image" data-caption="Сяйво — Стівен Кінг · Адреналін" aria-label="Відкрити обкладинку «Сяйво» на весь екран">
+                <img src="assets/covers/the-shining.webp" alt="Обкладинка книги «Сяйво»" width="400" height="600" loading="lazy">
+                <span class="book-rank" aria-hidden="true">#6</span>
+              </a>
+              <div class="book-info">
+                <span class="book-mood">Адреналін</span>
+                <h3 class="book-title">Сяйво</h3>
+                <p class="book-author">Стівен Кінг</p>
+                <p class="book-tension"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Напруга: 10 із 10 · Горор</p>
+              </div>
+            </article>
+          </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev" aria-label="Попередні книги"></div>
+        <div class="swiper-button-next" aria-label="Наступні книги"></div>
+      </div>
+    </section>
+
+    <!-- 5. СЕКЦІЯ: ВІДГУКИ ЧИТАЧІВ (Swiper.js v11) -->
+    <section class="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="reviews" aria-labelledby="testimonials-title">
       <div class="mb-10 max-w-2xl">
         <span class="inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase text-indigo-600 dark:text-indigo-400 mb-2">
           <span aria-hidden="true">#</span>СПІЛЬНИЙ ДОСВІД. ОСОБИСТІ ІСТОРІЇ.
@@ -430,61 +560,128 @@
         </p>
       </div>
 
-      <ul class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <li>
-          <article class="group flex flex-col justify-between h-full p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl shadow-sm dark:shadow-none transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-500/60 hover:shadow-xl hover:shadow-indigo-500/10">
-            <blockquote class="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed mb-6">
-              «Нарешті не список "треба прочитати", а книга, яку справді хочеться відкрити. Саме те, що було потрібно після довгого тижня.»
-            </blockquote>
-            <div class="flex items-center justify-between pt-4 border-t border-zinc-200 dark:border-[#27272A]">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-[#27272A] border border-zinc-300 dark:border-[#3F3F46] text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm transition-all" aria-hidden="true">О</div>
-                <div>
-                  <h3 class="text-sm font-semibold text-zinc-900 dark:text-white">Олена</h3>
-                  <p class="text-xs text-zinc-500 dark:text-zinc-400">Шукала затишку — знайшла Бакмана</p>
-                </div>
-              </div>
-              <i class="fa-solid fa-quote-right text-xl text-zinc-400 dark:text-zinc-600" aria-hidden="true"></i>
-            </div>
-          </article>
-        </li>
+      <div class="swiper reviews-swiper" aria-label="Слайдер відгуків читачів">
+        <div class="swiper-wrapper">
 
-        <li>
-          <article class="group flex flex-col justify-between h-full p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl shadow-sm dark:shadow-none transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-500/60 hover:shadow-xl hover:shadow-indigo-500/10">
-            <blockquote class="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed mb-6">
-              «Вайб-пошук повністю змінив мій підхід до вибору книг. Замість годин гортання списків одразу потрапляєш у настрій.»
-            </blockquote>
-            <div class="flex items-center justify-between pt-4 border-t border-zinc-200 dark:border-[#27272A]">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-[#27272A] border border-zinc-300 dark:border-[#3F3F46] text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm transition-all" aria-hidden="true">Д</div>
-                <div>
-                  <h3 class="text-sm font-semibold text-zinc-900 dark:text-white">Дарина</h3>
-                  <p class="text-xs text-zinc-500 dark:text-zinc-400">Шукала натхнення на осінь</p>
-                </div>
+          <div class="swiper-slide">
+            <article class="review-card">
+              <p class="review-stars" role="img" aria-label="Оцінка 5 з 5">
+                <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+              </p>
+              <blockquote class="review-text">«Нарешті не список "треба прочитати", а книга, яку справді хочеться відкрити. Саме те, що було потрібно після довгого тижня.»</blockquote>
+              <div class="review-author">
+                <div class="review-avatar" aria-hidden="true">О</div>
+                <div><h3 class="review-name">Олена</h3><p class="review-meta">Шукала затишку — знайшла Бакмана</p></div>
               </div>
-              <i class="fa-solid fa-quote-right text-xl text-zinc-400 dark:text-zinc-600" aria-hidden="true"></i>
-            </div>
-          </article>
-        </li>
+            </article>
+          </div>
 
-        <li>
-          <article class="group flex flex-col justify-between h-full p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl shadow-sm dark:shadow-none transition-all duration-300 hover:-translate-y-1.5 hover:border-indigo-500/60 hover:shadow-xl hover:shadow-indigo-500/10">
-            <blockquote class="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed mb-6">
-              «Шкала напруги — це геніально. Коли після роботи немає сил на складні драми, ставиш спокійний темп і отримуєш саме ту книгу, яка розвантажує голову.»
-            </blockquote>
-            <div class="flex items-center justify-between pt-4 border-t border-zinc-200 dark:border-[#27272A]">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-zinc-100 dark:bg-[#27272A] border border-zinc-300 dark:border-[#3F3F46] text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm transition-all" aria-hidden="true">М</div>
-                <div>
-                  <h3 class="text-sm font-semibold text-zinc-900 dark:text-white">Максим</h3>
-                  <p class="text-xs text-zinc-500 dark:text-zinc-400">Шукав трилер без передбачуваного фіналу</p>
-                </div>
+          <div class="swiper-slide">
+            <article class="review-card">
+              <p class="review-stars" role="img" aria-label="Оцінка 5 з 5">
+                <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+              </p>
+              <blockquote class="review-text">«Вайб-пошук повністю змінив мій підхід до вибору книг. Замість годин гортання списків одразу потрапляєш у настрій.»</blockquote>
+              <div class="review-author">
+                <div class="review-avatar" aria-hidden="true">Д</div>
+                <div><h3 class="review-name">Дарина</h3><p class="review-meta">Шукала натхнення на осінь</p></div>
               </div>
-              <i class="fa-solid fa-quote-right text-xl text-zinc-400 dark:text-zinc-600" aria-hidden="true"></i>
-            </div>
-          </article>
-        </li>
-      </ul>
+            </article>
+          </div>
+
+          <div class="swiper-slide">
+            <article class="review-card">
+              <p class="review-stars" role="img" aria-label="Оцінка 5 з 5">
+                <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+              </p>
+              <blockquote class="review-text">«Шкала напруги — це геніально. Коли після роботи немає сил на складні драми, ставиш спокійний темп і отримуєш саме ту книгу.»</blockquote>
+              <div class="review-author">
+                <div class="review-avatar" aria-hidden="true">М</div>
+                <div><h3 class="review-name">Максим</h3><p class="review-meta">Шукав трилер без передбачуваного фіналу</p></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="swiper-slide">
+            <article class="review-card">
+              <p class="review-stars" role="img" aria-label="Оцінка 5 з 5">
+                <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+              </p>
+              <blockquote class="review-text">«Люблю, що не потрібна реєстрація. Відповіла на чотири запитання, і за десять секунд у мене вже була добірка на вихідні.»</blockquote>
+              <div class="review-author">
+                <div class="review-avatar" aria-hidden="true">І</div>
+                <div><h3 class="review-name">Ірина</h3><p class="review-meta">Планувала читання на вихідні</p></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="swiper-slide">
+            <article class="review-card">
+              <p class="review-stars" role="img" aria-label="Оцінка 5 з 5">
+                <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+              </p>
+              <blockquote class="review-text">«Вішлист і щоденник читання в одному місці — це те, чого мені не вистачало. Тепер нічого не губиться.»</blockquote>
+              <div class="review-author">
+                <div class="review-avatar" aria-hidden="true">А</div>
+                <div><h3 class="review-name">Андрій</h3><p class="review-meta">Веде список книжок на рік</p></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="swiper-slide">
+            <article class="review-card">
+              <p class="review-stars" role="img" aria-label="Оцінка 5 з 5">
+                <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+              </p>
+              <blockquote class="review-text">«Підбірка без спойлерів — це окрема радість. Отримала фентезі, про яке нічого не знала, і прочитала за два вечори.»</blockquote>
+              <div class="review-author">
+                <div class="review-avatar" aria-hidden="true">С</div>
+                <div><h3 class="review-name">Софія</h3><p class="review-meta">Шукала нове фентезі</p></div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev" aria-label="Попередній відгук"></div>
+        <div class="swiper-button-next" aria-label="Наступний відгук"></div>
+      </div>
+    </section>
+
+    <!-- 5.1 СЕКЦІЯ: ГАЛЕРЕЯ (Fancybox v5) -->
+    <section class="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="gallery" aria-labelledby="gallery-title">
+      <div class="mb-10 max-w-2xl">
+        <span class="inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase text-indigo-600 dark:text-indigo-400 mb-2">
+          <span aria-hidden="true">#</span>ЧИТАЦЬКА АТМОСФЕРА
+        </span>
+        <h2 id="gallery-title" class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
+          Галерея вайбів
+        </h2>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-2 leading-relaxed">
+          Натисни на фото, щоб відкрити його на весь екран. Листай стрілками й наближай колесом миші.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <a class="gallery-item" href="https://picsum.photos/seed/bookdrop1/1200/800" data-fancybox="bookdrop-gallery" data-caption="Затишний куточок для читання">
+          <img src="https://picsum.photos/seed/bookdrop1/600/400" alt="Затишний куточок для читання" loading="lazy">
+        </a>
+        <a class="gallery-item" href="https://picsum.photos/seed/bookdrop2/1200/800" data-fancybox="bookdrop-gallery" data-caption="Детективний вечір з чаєм">
+          <img src="https://picsum.photos/seed/bookdrop2/600/400" alt="Детективний вечір з чаєм" loading="lazy">
+        </a>
+        <a class="gallery-item" href="https://picsum.photos/seed/bookdrop3/1200/800" data-fancybox="bookdrop-gallery" data-caption="Полиця з новинками">
+          <img src="https://picsum.photos/seed/bookdrop3/600/400" alt="Полиця з новинками" loading="lazy">
+        </a>
+        <a class="gallery-item" href="https://picsum.photos/seed/bookdrop4/1200/800" data-fancybox="bookdrop-gallery" data-caption="Фентезі під дощ">
+          <img src="https://picsum.photos/seed/bookdrop4/600/400" alt="Фентезі під дощ" loading="lazy">
+        </a>
+        <a class="gallery-item" href="https://picsum.photos/seed/bookdrop5/1200/800" data-fancybox="bookdrop-gallery" data-caption="Читання на балконі">
+          <img src="https://picsum.photos/seed/bookdrop5/600/400" alt="Читання на балконі" loading="lazy">
+        </a>
+        <a class="gallery-item" href="https://picsum.photos/seed/bookdrop6/1200/800" data-fancybox="bookdrop-gallery" data-caption="Нічна бібліотека">
+          <img src="https://picsum.photos/seed/bookdrop6/600/400" alt="Нічна бібліотека" loading="lazy">
+        </a>
+      </div>
     </section>
 
     <!-- ========================================================================
@@ -504,8 +701,8 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-        
-        <!-- 1. Вбудоване YouTube відео з діючим ID (tIMtzkZ93gg) -->
+
+        <!-- 1. Вбудоване YouTube відео -->
         <article class="media-card flex flex-col p-5 sm:p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl shadow-sm dark:shadow-none transition-colors duration-300">
           <div class="mb-4">
             <h3 class="text-lg font-bold text-zinc-900 dark:text-white flex items-center gap-2">
@@ -516,22 +713,22 @@
               Атмосферний погляд на спокійне читання та пошук свого книжкового вайбу.
             </p>
           </div>
-          
+
           <!-- Адаптивний контейнер відео (aspect-ratio: 16/9, CLS = 0) -->
           <div class="video-container relative w-full aspect-video overflow-hidden rounded-xl bg-zinc-900 shadow-md">
-            <iframe 
+            <iframe
               class="absolute inset-0 w-full h-full border-0"
-              src="https://www.youtube-nocookie.com/embed/tIMtzkZ93gg?si=fkgnzEaC9cWBRZfl" 
-              title="BookDrop: Відео-маніфест про спокійне читання та пошук свого вайбу" 
-              loading="lazy" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              src="https://www.youtube-nocookie.com/embed/tIMtzkZ93gg?si=fkgnzEaC9cWBRZfl"
+              title="BookDrop: Відео-маніфест про спокійне читання та пошук свого вайбу"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen>
             </iframe>
           </div>
         </article>
 
-        <!-- 2. Вбудована інтерактивна карта найбільшої бібліотеки у світі (Бібліотека Конгресу) -->
+        <!-- 2. Вбудована інтерактивна карта (Бібліотека Конгресу) -->
         <article class="media-card flex flex-col p-5 sm:p-6 bg-white dark:bg-[#18181B] border border-zinc-200 dark:border-[#3F3F46] rounded-2xl shadow-sm dark:shadow-none transition-colors duration-300">
           <div class="mb-4">
             <h3 class="text-lg font-bold text-zinc-900 dark:text-white flex items-center gap-2">
@@ -545,11 +742,11 @@
 
           <!-- Адаптивний контейнер Google Maps (aspect-ratio: 16/9) -->
           <div class="map-container relative w-full aspect-video overflow-hidden rounded-xl bg-zinc-200 dark:bg-zinc-800 shadow-md">
-            <iframe 
+            <iframe
               class="absolute inset-0 w-full h-full border-0"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.1506190867493!2d-77.00516102346985!3d38.88868697172387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b82f8fee8ba3%3A0x68cd8a67edee3ecd!2sLibrary%20of%20Congress!5e0!3m2!1suk!2sua!4v1700000000000!5m2!1suk!2sua" 
-              title="Інтерактивна Google-карта розташування Бібліотеки Конгресу США" 
-              loading="lazy" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.1506190867493!2d-77.00516102346985!3d38.88868697172387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b82f8fee8ba3%3A0x68cd8a67edee3ecd!2sLibrary%20of%20Congress!5e0!3m2!1suk!2sua!4v1700000000000!5m2!1suk!2sua"
+              title="Інтерактивна Google-карта розташування Бібліотеки Конгресу США"
+              loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               allowfullscreen>
             </iframe>

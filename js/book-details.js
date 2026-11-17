@@ -116,7 +116,7 @@
     wishBtn.append(icon, label);
 
     const trackerLink = el("a", "btn btn-primary", "Відкрити Мій простір");
-    trackerLink.href = "tracker.html#reading-journal";
+    trackerLink.href = "tracker.html#journal";
     const actions = el("div", "details-actions");
     actions.append(wishBtn, trackerLink);
     info.append(actions);
